@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/bin/Debug
+/Data/DemoData
+/Data
+/obj/Debug
+/packages/Newtonsoft.Json.13.0.3
+/ExtRSNET48.Tests/bin/Debug
+/ExtRSNET48.Tests/obj/Debug
+/packages
+/obj/Release

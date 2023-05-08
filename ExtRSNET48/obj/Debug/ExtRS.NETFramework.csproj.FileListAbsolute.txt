@@ -1,0 +1,6 @@
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\ExtRS.NETFramework.csproj.AssemblyReference.cache
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\ExtRS.NETFramework.csproj.CoreCompileInputs.cache
+C:\source\opensource\ExtRS.NETFramework\bin\Debug\ExtRS.NETFramework.dll
+C:\source\opensource\ExtRS.NETFramework\bin\Debug\ExtRS.NETFramework.pdb
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\ExtRS.NETFramework.dll
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\ExtRS.NETFramework.pdb

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.3</version>
+    <title>ExtRSNET48</title>
+    <authors>sonrai LLC</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/cfitzg/ExtRSNET48</projectUrl>
+    <iconUrl>https://www.iconfinder.com/icons/170257/chart_charts_graph_graphs_list_report_reports_icon</iconUrl>
+    <description>A utility library for .NET Framework 4.8</description>
+    <releaseNotes>Initial utility methods</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>SSRS .NET formatting reports reporting</tags>
+  </metadata>
+</package>

@@ -1,0 +1,2 @@
+C:\source\opensource\ExtRSNET48\ExtRSNET48.Tests\obj\Debug\ExtRSNET48.Tests.csproj.AssemblyReference.cache
+C:\source\opensource\ExtRSNET48\ExtRSNET48.Tests\obj\Debug\ExtRSNET48.Tests.csproj.CoreCompileInputs.cache

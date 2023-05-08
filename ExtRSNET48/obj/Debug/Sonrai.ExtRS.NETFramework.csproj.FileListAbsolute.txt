@@ -1,0 +1,6 @@
+C:\source\opensource\ExtRS.NETFramework\bin\Debug\Sonrai.ExtRS.NETFramework.dll
+C:\source\opensource\ExtRS.NETFramework\bin\Debug\Sonrai.ExtRS.NETFramework.pdb
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\Sonrai.ExtRS.NETFramework.csproj.AssemblyReference.cache
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\Sonrai.ExtRS.NETFramework.csproj.CoreCompileInputs.cache
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\Sonrai.ExtRS.NETFramework.dll
+C:\source\opensource\ExtRS.NETFramework\obj\Debug\Sonrai.ExtRS.NETFramework.pdb
