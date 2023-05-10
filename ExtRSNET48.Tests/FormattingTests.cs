@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
-using Sonrai.ExtRSNET48.Services;
+using System.Text.RegularExpressions;
 
 namespace Sonrai.ExtRSNET48.UnitTests
 {
@@ -37,6 +37,34 @@ namespace Sonrai.ExtRSNET48.UnitTests
                         data, is, beautiful";
             var json = FormattingService.CsvToJson(csv, ",");
             Assert.IsTrue(JToken.Parse(json).HasValues);
+        }
+
+        [TestMethod]
+        public void HexidecialSucceeds()
+        {
+            var match = Regex.Match("#000000", FormattingService.Hexidecimnal);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void HexidecialFails()
+        {
+            var match = Regex.Match("#33ff355$", FormattingService.Hexidecimnal);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void SocialSecuritySucceeds()
+        {
+            var match = Regex.Match("111-22-1111", FormattingService.SocialSecurity);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void SocialSecurityFails()
+        {
+            var match = Regex.Match("11-2-34453-1", FormattingService.SocialSecurity);
+            Assert.IsTrue(!match.Success);
         }
     }
 }

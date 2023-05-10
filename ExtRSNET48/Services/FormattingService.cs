@@ -164,7 +164,7 @@ namespace Sonrai.ExtRSNET48
 
         public static string UsPostalCode = "^(?!0{3})[0-9]{3,5}$";
 
-        public static string SocialSecurity = "/^((?!219-09-9999|078-05-1120)(?!666|000|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\\d{2})\\d{3} (?!00)\\d{2} (?!0{4})\\d{4})|((?!219099999|078051120)(?!666|000|9\\d{2})\\d{3}(?!00)\\d{2}(?!0{4})\\d{4})$/";
+        public static string SocialSecurity = "^((?!219-09-9999|078-05-1120)(?!666|000|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\\d{2})\\d{3} (?!00)\\d{2} (?!0{4})\\d{4})|((?!219099999|078051120)(?!666|000|9\\d{2})\\d{3}(?!00)\\d{2}(?!0{4})\\d{4})$";
 
         public static string Passport = "/^[A-PR-WY][1-9]\\d\\s?\\d{4}[1-9]$/";
 
@@ -179,33 +179,8 @@ namespace Sonrai.ExtRSNET48
 
         public static string CardVisaMastercard = "^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$";
 
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
+        public static string Hexidecimnal = "^#?([a-f0-9]{6}|[a-f0-9]{3})$";
 
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
-
-        public static string FilePathWithoutExt = "/^(.+)/([^/]+)$/";
         #endregion
 
         [Obsolete("This method will be deprecated soon.")]

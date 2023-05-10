@@ -25,3 +25,13 @@ C:\source\opensource\ExtRSNET48\ExtRSNET48\obj\Debug\ExtRSNET48.csproj.CoreCompi
 C:\source\opensource\ExtRSNET48\ExtRSNET48\obj\Debug\ExtRSNET48.csproj.CopyComplete
 C:\source\opensource\ExtRSNET48\ExtRSNET48\obj\Debug\Sonrai.ExtRSNET48.dll
 C:\source\opensource\ExtRSNET48\ExtRSNET48\obj\Debug\Sonrai.ExtRSNET48.pdb
+C:\source\open-source\ExtRSNET48\ExtRSNET48\bin\Debug\Sonrai.ExtRSNET48.dll
+C:\source\open-source\ExtRSNET48\ExtRSNET48\bin\Debug\Sonrai.ExtRSNET48.pdb
+C:\source\open-source\ExtRSNET48\ExtRSNET48\bin\Debug\GoogleMaps.LocationServices.dll
+C:\source\open-source\ExtRSNET48\ExtRSNET48\bin\Debug\Newtonsoft.Json.dll
+C:\source\open-source\ExtRSNET48\ExtRSNET48\bin\Debug\Newtonsoft.Json.xml
+C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\ExtRSNET48.csproj.AssemblyReference.cache
+C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\ExtRSNET48.csproj.CoreCompileInputs.cache
+C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\ExtRSNET48.csproj.CopyComplete
+C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\Sonrai.ExtRSNET48.dll
+C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\Sonrai.ExtRSNET48.pdb
