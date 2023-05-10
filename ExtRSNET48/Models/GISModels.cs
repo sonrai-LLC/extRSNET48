@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Sonrai.ExtRS.Models
+namespace Sonrai.ExtRSNET48.Models
 {
     public class Location
     {
         public string Lat;
         public string Long;
-    }
 
-    //:::ref: https://stackoverflow.com/users/643723/sobelito
-    public static class States
-    {
+        //:::ref: https://stackoverflow.com/users/643723/sobelito
         public static readonly List<State> StatesAndProvinces = new List<State>() {
           new State("AL", "Alabama"),
           new State("AK", "Alaska"),
@@ -82,31 +75,6 @@ namespace Sonrai.ExtRS.Models
           new State("SK", "Saskatchewan"),
           new State("YT", "Yukon"),
           };
-
-        public static List<string> Abbreviations()
-        {
-            return StatesAndProvinces.Select(s => s.Abbreviation).ToList();
-        }
-
-        public static List<string> Names()
-        {
-            return StatesAndProvinces.Select(s => s.Name).ToList();
-        }
-
-        public static string GetName(string abbreviation)
-        {
-            return StatesAndProvinces.Where(s => s.Abbreviation.Equals(abbreviation, StringComparison.CurrentCultureIgnoreCase)).Select(s => s.Name).FirstOrDefault();
-        }
-
-        public static string GetAbbreviation(string name)
-        {
-            return StatesAndProvinces.Where(s => s.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)).Select(s => s.Abbreviation).FirstOrDefault();
-        }
-
-        public static List<State> ToList()
-        {
-            return StatesAndProvinces;
-        }
     }
 
     public class State

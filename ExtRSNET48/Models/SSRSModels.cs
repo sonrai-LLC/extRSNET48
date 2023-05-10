@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sonrai.ExtRS.Models
+﻿namespace Sonrai.ExtRS.Models
 {
     public class SSRSModel
     {
-        private string version;
-        private string adminUser;
-        private string _pwd;
-        public readonly string Administrator;
-        public readonly string ReportServer;
+        public readonly string Administrator = "ExtRSAuth";
+        public readonly string UserName;
+        public readonly string ServerName = "localhost";
     }
 
     public enum AuthenticationType
     {
         WindowsAD,
         MSCustomForms,
-        ExtRS
+        ExtRSAuth
     }
 }
