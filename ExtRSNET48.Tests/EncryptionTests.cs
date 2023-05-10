@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sonrai.ExtRSNET48.Services;
 using System;
 
 namespace Sonrai.ExtRSNET48.UnitTests

@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Sonrai.ExtRSNET48
 {
     public class ReferenceDataService
     {
-        public string GetMarketTickers()
+        public static async Task<string> GetSynonyms(string wordsPlusDelimited)
         {
-            return "";
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync("https://api.datamuse.com/words?ml=" + wordsPlusDelimited);
         }
+
+        // 
 
         //Static Reference Data(D1HOOPS, etc.)
         //    Market Info

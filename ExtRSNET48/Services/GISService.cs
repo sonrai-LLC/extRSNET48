@@ -6,7 +6,7 @@ using System.Net.Http;
 using Sonrai.ExtRSNET48.Models;
 using System;
 
-namespace Sonrai.ExtRSNET48.Services
+namespace Sonrai.ExtRSNET48
 {
     public class GISService
     {
@@ -19,13 +19,13 @@ namespace Sonrai.ExtRSNET48.Services
             _locationService = locationService;
         }
 
-        public static List<Location> GetLocations(List<string> addresses, GoogleLocationService locationService)
+        public List<Location> GetLocations(List<string> addresses)
         {
             var locations = new List<Location>();
             foreach (string address in addresses)
             {
                 Location unused = new Location();
-                MapPoint coords = locationService.GetLatLongFromAddress(address.Replace(" ", "+") + "," + address.Replace(" ", "+") + "," + address.Replace(" ", "+"));
+                MapPoint coords = _locationService.GetLatLongFromAddress(address.Replace(" ", "+") + "," + address.Replace(" ", "+") + "," + address.Replace(" ", "+"));
                 if (coords != null)
                 {
                     Location location = new Location() { Lat = coords.Latitude.ToString(), Long = coords.Longitude.ToString() };

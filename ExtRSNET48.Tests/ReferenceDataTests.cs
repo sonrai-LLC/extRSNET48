@@ -1,12 +1,23 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
-using Sonrai.ExtRSNET48.Services;
+using System.Threading.Tasks;
 
 namespace Sonrai.ExtRSNET48.UnitTests
 {
     [TestClass]
     public class ReferenceDataTests
     {
-       
+        [TestMethod]
+        public async Task GetSynonymsSuceeds()
+        {
+            var result = await ReferenceDataService.GetSynonyms("nonplussed bored");
+            Assert.IsTrue(result.Length > 0);
+        }
+
+        [TestMethod]
+        public async Task GetSynonymsFails()
+        {
+            var result = await ReferenceDataService.GetSynonyms(null);
+            Assert.IsTrue(result.Length > 0);
+        }
     }
 }
