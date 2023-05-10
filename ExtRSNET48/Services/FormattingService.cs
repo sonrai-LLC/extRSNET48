@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace Sonrai.ExtRSNET48
@@ -182,6 +184,18 @@ namespace Sonrai.ExtRSNET48
         public static string Hexidecimnal = "^#?([a-f0-9]{6}|[a-f0-9]{3})$";
 
         #endregion
+
+        public static async Task<string> ShortenUrl(string url)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync("https://is.gd/create.php?format=simple&url=www.example.com" + url);
+        }
+
+        public static async Task<string> UnshortenUrl(string shortUrl)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync("https://unshorten.me/json/goo.gl/" + shortUrl);
+        }
 
         [Obsolete("This method will be deprecated soon.")]
         public bool DeprecatedExample()

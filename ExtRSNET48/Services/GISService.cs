@@ -57,12 +57,12 @@ namespace Sonrai.ExtRSNET48
             return Location.StatesAndProvinces.First(x => x.Name == stateName).Abbreviation;
         }
 
-        public static List<string> Abbreviations()
+        public static List<string> StateAbbreviations()
         {
             return Location.StatesAndProvinces.Select(s => s.Abbreviation).ToList();
         }
 
-        public static List<string> Names()
+        public static List<string> StateNames()
         {
             return Location.StatesAndProvinces.Select(s => s.Name).ToList();
         }

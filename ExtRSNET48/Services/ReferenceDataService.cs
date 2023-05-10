@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Sonrai.ExtRSNET48
@@ -16,45 +11,35 @@ namespace Sonrai.ExtRSNET48
             return await client.GetStringAsync("https://api.datamuse.com/words?ml=" + wordsPlusDelimited);
         }
 
-        // 
-
-        //Static Reference Data(D1HOOPS, etc.)
-        //    Market Info
-        //    GoogleMaps LocationInfo, Zillow, etc.
-
-
-        //public string GetDJIA()
-        //{
-
-        //}
-
-        //public string GetNasdaq()
-        //{
-
-        //}
-
-        //public string GetSP500()
-        //{
-
-        //}
-
-        //public string GetUSStates()
-        //{
-
-        //}
-
-        //public string GetUSFlag()
-        //{
-
-        //}
-
-
-        // Static ref data
-
-        // Custom ref data
-        public string GetCustomReferenceData(string tenantId, string sql = "")
+        public static async Task<string> GetAppPublicIP()
         {
-            return ""; // FROM D1MBB...
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync("https://api.ipify.org?format=json");
         }
+
+        //ref: api.country.is
+        public static async Task<string> GetCountryByIP(string ip)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync(string.Format("https://api.country.is/9.9.9.9/{0}", ip));
+        }
+
+        public static async Task<string> GetTickerInfo(string ticker, string apiKey)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}?token={1}", ticker, apiKey));
+        }
+
+        public static async Task<string> GetTickerPrices(string ticker, string apiKey)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}/prices", ticker));
+        }
+
+        public static async Task<string> GetTickerPriceHistory(string ticker, string start, string end, string apiKey)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}/prices?startDate={1}&endDate={2}", ticker, start, end));
+        } 
     }
 }
