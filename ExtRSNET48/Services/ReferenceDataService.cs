@@ -24,22 +24,22 @@ namespace Sonrai.ExtRSNET48
             return await client.GetStringAsync(string.Format("https://api.country.is/9.9.9.9/{0}", ip));
         }
 
-        public static async Task<string> GetTickerInfo(string ticker, string apiKey)
+        public static async Task<string> GetTickerInfo(string ticker, string token)
         {
             HttpClient client = new HttpClient();
-            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}?token={1}", ticker, apiKey));
+            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}?token={1}", ticker, token));
         }
 
-        public static async Task<string> GetTickerPrices(string ticker, string apiKey)
+        public static async Task<string> GetTickerPrices(string ticker, string token)
         {
             HttpClient client = new HttpClient();
-            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}/prices", ticker));
+            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}/prices?token={1}", ticker, token));
         }
 
-        public static async Task<string> GetTickerPriceHistory(string ticker, string start, string end, string apiKey)
+        public static async Task<string> GetTickerPriceHistory(string ticker, string start, string end, string token)
         {
             HttpClient client = new HttpClient();
-            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}/prices?startDate={1}&endDate={2}", ticker, start, end));
+            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}/prices?startDate={1}&endDate={2}?token={3}", ticker, start, end, token));
         } 
     }
 }
