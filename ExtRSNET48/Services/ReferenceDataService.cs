@@ -17,7 +17,6 @@ namespace Sonrai.ExtRSNET48
             return await client.GetStringAsync("https://api.ipify.org?format=json");
         }
 
-        //ref: api.country.is
         public static async Task<string> GetCountryByIP(string ip)
         {
             HttpClient client = new HttpClient();

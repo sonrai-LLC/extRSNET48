@@ -26,6 +26,9 @@ C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\ExtRSNET48.csproj.CoreComp
 C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\ExtRSNET48.csproj.CopyComplete
 C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\Sonrai.ExtRSNET48.dll
 C:\source\open-source\ExtRSNET48\ExtRSNET48\obj\Debug\Sonrai.ExtRSNET48.pdb
+C:\source\opensource\ExtRSNET48\ExtRSNET48\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\source\opensource\ExtRSNET48\ExtRSNET48\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\source\opensource\ExtRSNET48\ExtRSNET48\bin\Debug\Microsoft.TestPlatform.AdapterUtilities.dll
 C:\source\opensource\ExtRSNET48\ExtRSNET48\bin\Debug\Sonrai.ExtRSNET48.dll
 C:\source\opensource\ExtRSNET48\ExtRSNET48\bin\Debug\Sonrai.ExtRSNET48.pdb
 C:\source\opensource\ExtRSNET48\ExtRSNET48\bin\Debug\GoogleMaps.LocationServices.dll

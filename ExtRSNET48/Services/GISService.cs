@@ -19,6 +19,18 @@ namespace Sonrai.ExtRSNET48
             _locationService = locationService;
         }
 
+        public Location GetLocation(string address)
+        {
+            MapPoint coords = _locationService.GetLatLongFromAddress(address.Replace(" ", "+") + "," + address.Replace(" ", "+") + "," + address.Replace(" ", "+"));
+            Location location;
+            if (coords != null)
+                location = new Location() { Lat = coords.Latitude.ToString(), Long = coords.Longitude.ToString() };
+            else
+                return null;
+
+            return location;
+        }
+
         public List<Location> GetLocations(List<string> addresses)
         {
             var locations = new List<Location>();
@@ -67,7 +79,7 @@ namespace Sonrai.ExtRSNET48
             return Location.StatesAndProvinces.Select(s => s.Name).ToList();
         }
 
-        public static string GetName(string abbreviation)
+        public static string GetStateOrProvinceName(string abbreviation)
         {
             return Location.StatesAndProvinces.Where(s => s.Abbreviation.Equals(abbreviation, StringComparison.CurrentCultureIgnoreCase)).Select(s => s.Name).FirstOrDefault();
         }
