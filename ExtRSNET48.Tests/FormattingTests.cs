@@ -332,20 +332,132 @@ namespace Sonrai.ExtRSNET48.UnitTests
         }
 
         [TestMethod]
-        public void OracleDateSucceeds()
+        public void USPassportSucceeds()
         {
-            var match = Regex.Match("01-APR-1998", FormattingService.OracleDate);
+            var match = Regex.Match("123456789", FormattingService.USPassport);
             Assert.IsTrue(match.Success);
         }
 
         [TestMethod]
-        public void OracleDateFails()
+        public void USPassportFails()
         {
-            var match = Regex.Match("JAN-01-2024", FormattingService.OracleDate);
+            var match = Regex.Match("12345", FormattingService.USPassport);
             Assert.IsTrue(!match.Success);
         }
 
+        [TestMethod]
+        public void PhoneNumberInternationalSucceeds()
+        {
+            var match = Regex.Match("+44 7911 123456", FormattingService.PhoneNumberInternational);
+            Assert.IsTrue(match.Success);
+        }
 
+        [TestMethod]
+        public void PhoneNumberInternationalFails()
+        {
+            var match = Regex.Match("12345-dhguhb-01", FormattingService.PhoneNumberInternational);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void SqlServerDateSucceeds()
+        {
+            var match = Regex.Match("2023-05-10 20:33:14.160", FormattingService.SqlServerDate);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void SqlServerDateFails()
+        {
+            var match = Regex.Match("2023/05/1014.160", FormattingService.SqlServerDate);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void Time12HourSucceeds()
+        {
+            var match = Regex.Match("1:00am", FormattingService.Time12Hour);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void Time12HourFails()
+        {
+            var match = Regex.Match("24:00", FormattingService.Time12Hour);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void Time24HourSucceeds()
+        {
+            var match = Regex.Match("21:00", FormattingService.Time24Hour);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void Time24HourFails()
+        {
+            var match = Regex.Match("22:01am", FormattingService.Time24Hour);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void UserNameSucceeds()
+        {
+            var match = Regex.Match("SomeUser007", FormattingService.UserName);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void UserNameFails()
+        {
+            var match = Regex.Match("B@-#!!!{uzr%^&(+    ", FormattingService.UserName);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void UsPostalCodeSucceeds()
+        {
+            var match = Regex.Match("90210", FormattingService.UsPostalCode);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void UsPostalCodeFails()
+        {
+            var match = Regex.Match("23-90810-12345632", FormattingService.UsPostalCode);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void WholeAndDecimalNumbersSucceeds()
+        {
+            var match = Regex.Match("10", FormattingService.WholeAndDecimalNumbers);
+            Assert.IsTrue(match.Success);
+            match = Regex.Match("10.123", FormattingService.WholeAndDecimalNumbers);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void WholeAndDecimalNumbersCodeFails()
+        {
+            var match = Regex.Match("ASFDOIUHF(H_", FormattingService.WholeAndDecimalNumbers);
+            Assert.IsTrue(!match.Success);
+        }
+
+        [TestMethod]
+        public void WholeNumbersSucceeds()
+        {
+            var match = Regex.Match("10", FormattingService.WholeNumbers);
+            Assert.IsTrue(match.Success);
+        }
+
+        [TestMethod]
+        public void WholeNumbersFails()
+        {
+            var match = Regex.Match("1.12", FormattingService.WholeNumbers);
+            Assert.IsTrue(!match.Success);
+        }
 
         [TestMethod]
         public void DelimitedToJsonSucceeds()
