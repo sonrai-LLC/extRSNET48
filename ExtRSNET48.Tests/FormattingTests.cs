@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Sonrai.ExtRSNET48.UnitTests
 {
@@ -27,6 +28,30 @@ namespace Sonrai.ExtRSNET48.UnitTests
         {
             var result = FormattingService.ToTrillions(200000000000000);
             Assert.IsTrue(result == 200);
+        }
+
+        [TestMethod]
+        public void ConvertInchesToFeetAndInchesSucceeds()
+        {
+            var result = FormattingService.ConvertInchesToFeetAndInches(68);
+            Assert.IsTrue(result.Contains("'"));
+            Assert.IsTrue(result.Contains("\""));
+        }
+
+        [TestMethod]
+        public async Task ShortenUrlSucceeds()
+        {
+            string url = "www.google.com/someplace";
+            string result = await FormattingService.ShortenUrl(url);
+            Assert.IsTrue(result.Length < url.Length);
+        }
+
+        [TestMethod]
+        public async Task UnshortenUrlSucceeds()
+        {
+            string url = "https://tinyurl.com/2p8z2mm9";
+            string result = await FormattingService.UnshortenUrl(url);
+            Assert.IsTrue(result.Length > url.Length);
         }
 
         [TestMethod]

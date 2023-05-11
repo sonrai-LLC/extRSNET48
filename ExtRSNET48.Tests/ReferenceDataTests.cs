@@ -7,7 +7,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
     public class ReferenceDataTests
     {
         [TestMethod]
-        public async Task GetSynonymsSuceeds()
+        public async Task GetSynonymsSucceeds()
         {
             var result = await ReferenceDataService.GetSynonyms("nonplussed bored");
             Assert.IsTrue(result.Length > 0);
