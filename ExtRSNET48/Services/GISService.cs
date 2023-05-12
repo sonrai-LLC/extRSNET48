@@ -31,6 +31,8 @@ namespace Sonrai.ExtRSNET48
             return location;
         }
 
+
+
         public List<Location> GetLocations(List<string> addresses)
         {
             var locations = new List<Location>();

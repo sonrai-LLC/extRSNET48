@@ -3,6 +3,11 @@ using System.Threading.Tasks;
 
 namespace Sonrai.ExtRSNET48
 {
+    // Twitter, IG, Fb, Quora
+    //PollingPlaces
+    //ElectionResult
+    //Headlines
+    // Score (NCAAM, NCAAF, NBA, MLB, NFL, Futbol)
     public class ReferenceDataService
     {
         public static async Task<string> GetSynonyms(string wordsPlusDelimited)

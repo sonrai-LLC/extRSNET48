@@ -2,6 +2,7 @@
 
 namespace Sonrai.ExtRSNET48
 {
+    // RSAuth (auth via header. etc.- return sqlAuthCookie)
 
     public class SSRSService
     {
@@ -16,7 +17,12 @@ namespace Sonrai.ExtRSNET48
             return "";
         }
 
-        public string GetServerName()
+        public string GetServerInfo()
+        {
+            return "";
+        }
+
+        public string GetReportInfo()
         {
             return "";
         }
