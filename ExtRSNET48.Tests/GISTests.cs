@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sonrai.ExtRSNET48.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GoogleMaps.LocationServices;
+using System;
+using System.Net.Http;
 
 namespace Sonrai.ExtRSNET48.UnitTests
 {
@@ -24,89 +25,85 @@ namespace Sonrai.ExtRSNET48.UnitTests
         }
 
         [TestMethod]
-        public void GetLocationFails()
+        public void GetLocationReturnsNothing()
         {
             var result = gis.GetLocation("NeverNeverland");
-            Assert.IsFalse(result.Long.Length > 0);
+            Assert.IsTrue(result == null);
         }
 
-        //[TestMethod]
-        //public async Task GetLocationsSucceeds()
-        //{
-        //    var result = await gis.GetLocations(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [TestMethod]
+        public void GetLocationsSucceeds()
+        {
+            List<string> locations = new List<string> { "Chicago, IL", "Milwaukee, WI", "Detroit, MI"};
+            var result = gis.GetLocations(locations);
+            Assert.IsTrue(result.Count == 3);
+        }
 
-        //[TestMethod]
-        //public async Task GetLocationsFails()
-        //{
-        //    var result = await gis.GetLocations(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [TestMethod]
+        public void GetLocationsReturnsNothing()
+        {
+            List<string> locations = new List<string> { "adv??asdvgsd, _B", "adgsdgvs, RE", "YTFYT??, H+" };
+            var result = gis.GetLocations(locations);
+            Assert.IsTrue(result.Count == 0);
+        }
 
-        //[TestMethod]
-        //public async Task GetUnitedStatesFlagUrlSucceeds()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [TestMethod]
+        public void GetUnitedStatesFlagUrlSucceeds()
+        {
+            var result = GISService.GetUnitedStatesFlagUrl("WI");
+            Assert.IsTrue(result.Length > 0);
+        }
 
-        //[TestMethod]
-        //public async Task GetUnitedStatesFlagUrlFails()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
+        public void GetUnitedStatesFlagUrlFails()
+        {
+            var result = GISService.GetUnitedStatesFlagUrl(null);
+            // expect exception
+        }
 
+        [TestMethod]
+        public async Task GetUnitedStatesFlagImageSucceeds()
+        {
+            var result = await gis.GetUnitedStatesFlagImage("wisconsin");
+            Assert.IsTrue(result.Length > 0);
+        }
 
-        //[TestMethod]
-        //public async Task GetUnitedStatesFlagImageSucceeds()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [ExpectedException(typeof(HttpRequestException))]
+        [TestMethod]
+        public async Task GetUnitedStatesFlagImageFails()
+        {
+            var result = await gis.GetUnitedStatesFlagImage("ZZ");
+            // expect exception
+        }
 
-        //[TestMethod]
-        //public async Task GetUnitedStatesFlagImageFails()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [TestMethod]
+        public void GetStateNameFromStateAbbreviationSucceeds()
+        {
+            var result = GISService.GetStateNameFromStateAbbreviation("WI");
+            Assert.IsTrue(result.Length > 0);
+        }
 
-        //[TestMethod]
-        //public async Task GetStateNameFromStateAbbreviationSucceeds()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
+        public void GetStateNameFromStateAbbreviationFails()
+        {
+            var result = GISService.GetStateNameFromStateAbbreviation("ZZ");
+        }
 
-        //[TestMethod]
-        //public async Task GetStateNameFromStateAbbreviationFails()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [TestMethod]
+        public void GetStateAbbreviationFromStateNameSucceeds()
+        {
+            var result = GISService.GetStateAbbreviationFromStateName("Wisconsin");
+            Assert.IsTrue(result.Length > 0);
+        }
 
-        //[TestMethod]
-        //public async Task GetStateAbbreviationFromStateNameSucceeds()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
-
-        //[TestMethod]
-        //public async Task GetStateAbbreviationFromStateNameFails()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
-
-        //[TestMethod]
-        //public async Task AbbreviationsSucceeds()
-        //{
-        //    var result = await ReferenceDataService.GetSynonyms(null);
-        //    Assert.IsTrue(result.Length > 0);
-        //}
+        [ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
+        public void GetStateAbbreviationFromStateNameFails()
+        {
+            var result = GISService.GetStateAbbreviationFromStateName("Milwaukee"); ;
+        }
 
         [TestMethod]
         public void StateAbbreviationsSucceeds()

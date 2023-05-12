@@ -20,7 +20,7 @@ namespace Sonrai.ExtRSNET48
         public static async Task<string> GetCountryByIP(string ip)
         {
             HttpClient client = new HttpClient();
-            return await client.GetStringAsync(string.Format("https://api.country.is/9.9.9.9/{0}", ip));
+            return await client.GetStringAsync(string.Format("https://api.country.is/{0}", ip));
         }
 
         public static async Task<string> GetTickerInfo(string ticker, string token)
