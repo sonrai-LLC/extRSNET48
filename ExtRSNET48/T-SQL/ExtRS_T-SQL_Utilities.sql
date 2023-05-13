@@ -18,16 +18,13 @@
 	AND SUBSTRING(@term + @string, Number, LEN(@term)) = @term
  ) AS y);
 
-
  --Windowing for running totals, referencing related rows and row group totals
  SELECT
      SUM(xact_amt) OVER (ORDER BY xact_datetime) AS running_total
  FROM SOME_DB.dbo.SOME_TABLE
 
-
  --Get IDs from CSV of ids
  SELECT * FROM string_split('100,101,201,301,411,414', ',')
-
 
 --PUSH a series of values into one row
  SELECT playerID,
@@ -37,7 +34,6 @@
             group by teamID
       for xml path('')), 1, 1, '') allTeams
  FROM Managers
-
 
 --DYNAMIC SQL
  DECLARE @mult bit = 0
@@ -50,16 +46,9 @@
       SET @sqlToExecute = 'SELECT TOP 1 OrderId, PersonId FROM ' + @srvEast + '.ALGO.dbo.[Order] UNION ALL SELECT TOP 1 OrderID, PersonId FROM ' + @srvWest + '.ALGO.dbo.Order' 
  EXEC(@sqlToExecute)
 
-
-
- --CTE
- WITH Entity (EntityID, Name, ParentID, Tree)
- AS
- (
-    SELECT ID, Val1, Val2 FROM SomeDbServer.dbo.SomeDatabase;
- )
- SELECT * FROM Entity;
-
-
- --Revert a changed keyboard char map
-    --Windows key + Space bar
+--Revert a changed keyboard char map
+--Windows key + Space bar
+SELECT dateadd(mm, datediff(mm, 1, getDate()), 0) as FirstOfTheMonth
+SELECT dateadd(ms, -3, dateadd(mm, datediff(m, 0, getDate()) + 1, 0)) as LastOfTheMonth
+SELECT dateadd(qq, datediff(qq, 0, getDate()), 0) as FirstDayOfQtr
+SELECT dateadd(wk, datediff(wk, 0, dateadd(dd, 6 - datepart(day, getDate()), getDate())), 0)  --(First Monday of Month)

@@ -190,6 +190,21 @@ namespace Sonrai.ExtRSNET48
             return await client.GetStringAsync("https://unshorten.me/json/goo.gl/" + shortUrl);
         }
 
+        public static string FormatValueByScale(string value, string one, string two, string three, string four)
+        {
+            return "";
+        }
+
+        public static string FormatFinancialValue(string value)
+        {
+            return "";
+        }
+
+        public static bool CheckGenericCondition(object o, object j, string comparison)
+        {
+            return true; 
+        }
+
         [Obsolete("This method will be deprecated soon.")]
         public bool DeprecatedExample()
         {

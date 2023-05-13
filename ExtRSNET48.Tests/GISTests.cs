@@ -14,7 +14,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
         GISService gis;
        [TestInitialize] public void Init()
         {
-            gis = new GISService(new System.Net.Http.HttpClient(), new GoogleLocationService(googleApiKey));
+            gis = new GISService(new HttpClient(), new GoogleLocationService(googleApiKey));
         }
 
         [TestMethod]
