@@ -24,6 +24,22 @@ namespace Sonrai.ExtRSNET48
         {
             return value.ToString("C");
         }
+        public static decimal FromAbbreviatedValue(decimal value, string abbreviation)
+        {
+            switch (abbreviation)
+            {
+                case "K":
+                    return value * 1000;
+                case "M":
+                    return value * 1000000;
+                case "B":
+                    return value * 1000000000;
+                case "T":
+                    return value * 1000000000000;
+                default:
+                    return value;
+            }
+        }
 
         public static decimal ToThousands(decimal value)
         {
@@ -43,6 +59,26 @@ namespace Sonrai.ExtRSNET48
         public static decimal ToTrillions(decimal value)
         {
             return Convert.ToDecimal(value) / 1000000000000;
+        }
+
+        public static decimal FromThousands(decimal value)
+        {
+            return Convert.ToDecimal(value) * 1000;
+        }
+
+        public static decimal FromMillions(decimal value)
+        {
+            return Convert.ToDecimal(value) * 1000000;
+        }
+
+        public static decimal FromBillions(decimal value)
+        {
+            return Convert.ToDecimal(value) * 1000000000;
+        }
+
+        public static decimal FromTrillions(decimal value)
+        {
+            return Convert.ToDecimal(value) * 1000000000000;
         }
 
         public static string ConvertXmlToJson(string xml)
@@ -190,19 +226,36 @@ namespace Sonrai.ExtRSNET48
             return await client.GetStringAsync("https://unshorten.me/json/goo.gl/" + shortUrl);
         }
 
-        public static string FormatValueByScale(string value, string one, string two, string three, string four)
+        public static string FormatUpRankedValue(decimal value, decimal one, decimal two, decimal three = 0, decimal four = 0)
         {
-            return "";
+            if (value < one)
+            return "magenta";
+            else if (value > one && value < two)
+            return "red";
+            else if (value > one && value > two && value < three)
+            return "darkgray";
+            else if (value > three && value < four)
+                return "green";
+            else if (value > four)
+                return "lime";
+            else
+                return "#000000";
         }
 
-        public static string FormatFinancialValue(string value)
+        public static string FormatDownRankedValue(decimal value, decimal one, decimal two, decimal three = 0, decimal four = 0)
         {
-            return "";
-        }
-
-        public static bool CheckGenericCondition(object o, object j, string comparison)
-        {
-            return true; 
+            if (value < one)
+                return "lime";
+            else if (value > one && value < two)
+                return "green";
+            else if (value > one && value > two && value < three)
+                return "darkgray";
+            else if (value > three && value < four)
+                return "red";
+            else if (value > four)
+                return " magenta";
+            else
+                return "#000000";
         }
 
         [Obsolete("This method will be deprecated soon.")]

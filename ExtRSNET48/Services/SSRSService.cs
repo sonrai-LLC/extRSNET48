@@ -5,8 +5,6 @@ using System.Net.Http;
 
 namespace Sonrai.ExtRSNET48
 {
-    // RSAuth (auth via header. etc.- return sqlAuthCookie)
-
     public class SSRSService
     {
         HttpClient _client;
