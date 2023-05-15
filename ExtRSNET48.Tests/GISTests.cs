@@ -10,7 +10,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
     [TestClass]
     public class GISTests
     {
-        protected readonly string googleApiKey = "AIzaSyC0orVO-ck9GwAbqgYZTjx4yTMptnhBNNE"; // Google Maps API key, found here https://developers.google.com/maps/documentation/javascript/get-api-key
+        protected readonly string googleApiKey = "AIzaSyC0orVO-ck9GwAbqgYZTjx4yTMptnhBNNE"; // (inactive example) Google Maps API key, found here https://developers.google.com/maps/documentation/javascript/get-api-key
         GISService gis;
        [TestInitialize] public void Init()
         {

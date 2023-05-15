@@ -8,16 +8,6 @@ using System;
 
 namespace Sonrai.ExtRSNET48
 {
-
-    // Weather
-    // ShippingRate
-    // Coordinates
-    // Tracking
-    // Verify Address
-    // Maps directions
-    // Forex
-
-
     public class GISService
     {
         private readonly GoogleLocationService _locationService;
@@ -40,8 +30,6 @@ namespace Sonrai.ExtRSNET48
 
             return location;
         }
-
-
 
         public List<Location> GetLocations(List<string> addresses)
         {
