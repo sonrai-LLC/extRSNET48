@@ -50,5 +50,12 @@ namespace Sonrai.ExtRSNET48.UnitTests
             var result = await ReferenceDataService.GetTickerPrices("JCI", token);
             Assert.IsTrue(result.Length > 0);
         }
+
+        [TestMethod]
+        public async Task GetForexPriceSucceeds()
+        {
+            var result = await ReferenceDataService.GetForexPrice("EURUSD", token);
+            Assert.IsTrue(result.Length > 0);
+        }
     }
 }

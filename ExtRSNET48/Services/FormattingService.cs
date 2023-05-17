@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -256,6 +257,26 @@ namespace Sonrai.ExtRSNET48
                 return " magenta";
             else
                 return "#000000";
+        }
+
+        public static string CopyrightSymbol()
+        {
+            return "&#169;";
+        }
+
+        public static string TMSymbol()
+        {
+            return "&#8482;";
+        }
+
+        public static string USDate(string date)
+        {
+            return DateTime.Parse(date, new CultureInfo("en-US")).ToString();
+        }
+
+        public static string UKDate(string date)
+        {
+            return DateTime.Parse(date, new CultureInfo("en-UK")).ToString();
         }
 
         [Obsolete("This method will be deprecated soon.")]

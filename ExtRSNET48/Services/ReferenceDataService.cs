@@ -40,6 +40,12 @@ namespace Sonrai.ExtRSNET48
         {
             HttpClient client = new HttpClient();
             return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/daily/{0}/prices?startDate={1}&endDate={2}?token={3}", ticker, start, end, token));
-        } 
+        }
+
+        public static async Task<string> GetForexPrice(string currencies, string token)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync(string.Format("https://api.tiingo.com/tiingo/fx/{0}/top?token={1}", currencies, token));
+        }
     }
 }
