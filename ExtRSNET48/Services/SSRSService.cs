@@ -1,7 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System.Globalization;
-using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 
 namespace Sonrai.ExtRSNET48
 {
