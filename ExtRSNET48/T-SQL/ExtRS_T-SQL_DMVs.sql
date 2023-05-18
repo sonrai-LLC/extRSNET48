@@ -1,8 +1,9 @@
 -- Get all DMVs
-SELECT 'sys.' + name 'name', type, type_desc
+SELECT 'sys.' +[[name] 'name', [type], [type_desc]
 FROM sys.system_objects
-WHERE name LIKE 'dm_%'
-ORDER BY name
+WHERE [name] LIKE 'dm_%'
+ORDER BY [name]
+
 
 -- Run a DMV
 select * from

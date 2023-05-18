@@ -1,5 +1,4 @@
- 
- --Find all instances of '@string' within a string (varchar/nvarchar)
+  --Find all instances of '@string' within a string (varchar/nvarchar)
  CREATE FUNCTION dbo.FindPatternLocation
  (
  	@string NVARCHAR(MAX),
@@ -17,6 +16,7 @@
 	WHERE Number > 1 AND Number <= CONVERT(INT, LEN(@string)+1)
 	AND SUBSTRING(@term + @string, Number, LEN(@term)) = @term
  ) AS y);
+ GO;
 
  --Windowing for running totals, referencing related rows and row group totals
  SELECT
@@ -24,7 +24,7 @@
  FROM SOME_DB.dbo.SOME_TABLE
 
  --Get IDs from CSV of ids
- SELECT * FROM string_split('100,101,201,301,411,414', ',')
+ SELECT * FROM string_split('100, 101, 201, 301, 411, 414', ',')
 
 --PUSH a series of values into one row
  SELECT playerID,
