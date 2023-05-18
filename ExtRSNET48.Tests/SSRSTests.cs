@@ -12,6 +12,12 @@ namespace Sonrai.ExtRSNET48.UnitTests
         }
 
         [TestMethod]
+        public void GetSSRSParameterUIMarkup()
+        {
+
+        }
+
+        [TestMethod]
         public void GetReportBytesSucceeds()
         {
 

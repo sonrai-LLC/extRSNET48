@@ -10,6 +10,18 @@ namespace Sonrai.ExtRSNET48.UnitTests
     public class FomattingTests
     {
         [TestMethod]
+        public void CopyrightSymbolSucceeds()
+        {
+            Assert.IsTrue(FormattingService.CopyrightSymbol() == "&#169;");
+        }
+
+        [TestMethod]
+        public void TMSymbolSucceeds()
+        {
+            Assert.IsTrue(FormattingService.TMSymbol() == "&#8482;");
+        }
+
+        [TestMethod]
         public void GetBillionsSucceeds()
         {
             var result = FormattingService.ToMillions(200000000);
