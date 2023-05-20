@@ -12,6 +12,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
     {
         protected readonly string googleApiKey = "AIzaSyBwKjGONPjGa6Opj9j5XnlKzWZLGDT3Kbs"; // Google Maps API key, found here https://developers.google.com/maps/documentation/javascript/get-api-key
         GISService gis;
+
        [TestInitialize] public void Init()
         {
             gis = new GISService(new HttpClient(), new GoogleLocationService(googleApiKey));

@@ -1,50 +1,119 @@
-﻿using System.Net.Http;
+﻿using Newtonsoft.Json;
+using Sonrai.ExtRS.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Sonrai.ExtRSNET48
 {
     public class SSRSService
     {
-        HttpClient _client;
-        public SSRSService(HttpClient client)
-        {
-            _client = client;
+        public SSRSConnection conn;
+        private HttpClient client;
+        public SSRSService(SSRSConnection connection)
+        {          
+            conn = connection;
+            client = new HttpClient();
         }
 
-        public string GetSSRSResourceMarkup(string resourceType, string onClick = "", bool addCss = true)
+        public async Task<string> GetAllCatalogItemsHtml(string filter, string css = "")
         {
+            CookieContainer cookieContainer = new CookieContainer();
+            cookieContainer.Add(new Cookie("sqlAuthCookie", conn.sqlAuthCookie, "/", "localhost"));
+            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
+            {
+                using (client = new HttpClient(handler))
+                {
+                    string resp = await client.GetAsync(string.Format("https://{0}/reports/api/v2.0/CatalogItems", conn.ServerUrl)).Result.Content.ReadAsStringAsync();
+                    CatalogItemResponse catalogItems = JsonConvert.DeserializeObject<CatalogItemResponse>(resp);
+                    StringBuilder sb = new StringBuilder();
+
+                    //sb.Append("<div id='path'");
+                    //foreach (var item in catalogItems.)
+                    //{
+                    //    sb.Append(@" < div>
+                    //    !!!!!
+                    //    </div>");
+                    //}
+                    //sb.Append(@"</div>");
+
+                    return sb.ToString();
+                }
+            }
+        }
+
+        public static async Task<string> GetSqlAuthCookie(HttpClient client, string user = "", string password = "", string domain = "localhost")
+        {
+            string cookie = "";
+            StringContent httpContent = new StringContent("{ \"UserName\": \"ExtRSAuth\",  \"Password\": \"\",  \"Domain\": \"{0}\" }", Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(string.Format("https://{0}/reports/api/v2.0/Session", domain), httpContent);
+            HttpHeaders headers = response.Headers;
+            if (headers.TryGetValues("Set-Cookie", out IEnumerable<string> values))
+            {
+                cookie = values.First();
+            }
+
+            string pattern = @"(sqlAuthCookie=[A-Z0-9])\w+";
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            Match sqlAuthCookie = regex.Match(cookie);
+
+            return sqlAuthCookie.Value.Replace("sqlAuthCookie=", "");
+        }
+
+        public string GetCatalogItemHtml(string pathOrId, string onClick = "", string css = "")
+        {
+            string resourceType = "";
             switch (resourceType)
             {
-                case "folders":
+                case "folder":
                     {
-                        return "</>"; //option list
+                        return "</>";
                     }
-                case "reports":
+                case "report":
                     {
-                        return "</>"; //option list
+                        return "</>";
                     }
-
-                case "datasources":
+                case "datasource":
                     {
-                        return "</>"; //option list
+                        return "</>";
                     }
-                case "datasets":
+                case "dataset":
                     {
-                        return "</>"; //option list
-                    }
-                case "schedules":
-                    {
-                        return "</>"; //option list
+                        return "</>";
                     }
             }
             return "</>"; // format HTML in CLI lib lkup
         }
 
-        public string GetSSRSParameterUIMarkup()
+        public string GetSSRSParameterHtml(string pathOrId)
         {
             return "</>";
         }
 
-        public byte[] GetReportBytes(string report)
+        public string CreateOrUpdateCatalogItem(List<CatalogItem> catalogItem)
+        {
+            return "</>";
+        }
+
+        public string DeleteCatalogItem(string pathOrId)
+        {
+            return "</>";
+        }
+
+        public string DeleteCatalogItems(List<CatalogItem> catalogItem)
+        {
+            return "</>";
+        }
+
+        public byte[] GetReportBytes(string pathOrId)
         {
             return new byte[0];
         }

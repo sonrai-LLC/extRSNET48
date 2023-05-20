@@ -1,10 +1,18 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Sonrai.ExtRS.Models
 {
     public class SSRSConnection
     {
-        private string sqlAuthCookie;
+        public HttpClient httpClient { get; set; }
+        public string sqlAuthCookie;
         public string Administrator = "ExtRSAuth";
         public string UserName;
         public string UserRole;
@@ -13,20 +21,22 @@ namespace Sonrai.ExtRS.Models
 
         protected bool IsOnline = false;
 
-        public SSRSConnection(string serverUrl, string adminUser, string cookie, AuthenticationType authType = AuthenticationType.ExtRSAuth)
+        public SSRSConnection(string serverUrl, string adminUser, AuthenticationType authType = AuthenticationType.ExtRSAuth)
         {
             ServerUrl = serverUrl;
             Administrator = adminUser ?? Administrator;
-            sqlAuthCookie = cookie;
             AuthenticationType = authType;
+            httpClient = new HttpClient();
         }
     }
 
-    public abstract class CatalogItem
+    public class CatalogItem
     {
         [JsonProperty("@odata.type")]
         string ODataType;
+        [JsonProperty("Id")]
         string Id;
+        [JsonProperty("Name")]
         string Name;
         string Description;
         string Path;
@@ -44,6 +54,14 @@ namespace Sonrai.ExtRS.Models
         string[] Roles;
     }
 
+    public class CatalogItemResponse
+    {
+        [JsonProperty("@odata.context")]
+        string ODataContext;
+        [JsonProperty("value")]
+        List<CatalogItem> Value;
+    }
+
     public class Report : CatalogItem
     {
         bool HasDataSources;
@@ -51,7 +69,7 @@ namespace Sonrai.ExtRS.Models
         bool HasParameters;
     }
 
-    public class DataSet
+    public class DataSet : CatalogItem
     {
         bool QueryExecutionTimeOut;
         bool HasParameters;
