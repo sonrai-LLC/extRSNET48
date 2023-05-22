@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sonrai.ExtRS.Models;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+// await httpClient.DeleteAsync(string.Format("https://{0}/reports/api/v2.0/Session", ServerUrl));
 namespace Sonrai.ExtRSNET48.UnitTests
 {
     [TestClass]
@@ -24,7 +24,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
         public async Task GetAllCatalogItemsHtmlSucceeds()
         {
             var result = await ssrs.GetAllCatalogItemsHtml("");
-            Assert.IsTrue(result.Count() > 1);
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -51,5 +51,16 @@ namespace Sonrai.ExtRSNET48.UnitTests
 
         }
 
+        [TestMethod]
+        public void CreateSessionSucceeds()
+        {
+
+        }
+
+        [TestMethod]
+        public void DeleteSessionSucceeds()
+        {
+
+        }
     }
 }

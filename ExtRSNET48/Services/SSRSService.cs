@@ -15,6 +15,7 @@ namespace Sonrai.ExtRSNET48
 {
     public class SSRSService
     {
+        //IReportServerCredentials 
         public SSRSConnection conn;
         private HttpClient client;
         public SSRSService(SSRSConnection connection)
@@ -23,7 +24,7 @@ namespace Sonrai.ExtRSNET48
             client = new HttpClient();
         }
 
-        public async Task<string> GetAllCatalogItemsHtml(string filter, string css = "")
+        public async Task<CatalogItemResponse> GetAllCatalogItemsHtml(string filter, string css = "")
         {
             CookieContainer cookieContainer = new CookieContainer();
             cookieContainer.Add(new Cookie("sqlAuthCookie", conn.sqlAuthCookie, "/", "localhost"));
@@ -44,7 +45,7 @@ namespace Sonrai.ExtRSNET48
                     //}
                     //sb.Append(@"</div>");
 
-                    return sb.ToString();
+                    return catalogItems;
                 }
             }
         }
@@ -67,6 +68,7 @@ namespace Sonrai.ExtRSNET48
 
             return sqlAuthCookie.Value.Replace("sqlAuthCookie=", "");
         }
+
 
         public string GetCatalogItemHtml(string pathOrId, string onClick = "", string css = "")
         {
@@ -101,6 +103,16 @@ namespace Sonrai.ExtRSNET48
         public string CreateOrUpdateCatalogItem(List<CatalogItem> catalogItem)
         {
             return "</>";
+        }
+
+        public async Task CreateSession()
+        {
+            await client.DeleteAsync(string.Format("https://{0}/reports/api/v2.0/Session", conn.ServerUrl));
+        }
+
+        public async Task DeleteSession()
+        {
+            await client.DeleteAsync(string.Format("https://{0}/reports/api/v2.0/Session", conn.ServerUrl));
         }
 
         public string DeleteCatalogItem(string pathOrId)

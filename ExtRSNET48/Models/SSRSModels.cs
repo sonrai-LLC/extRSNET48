@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace Sonrai.ExtRS.Models
 {
@@ -64,9 +60,9 @@ namespace Sonrai.ExtRS.Models
 
     public class Report : CatalogItem
     {
-        bool HasDataSources;
-        bool HasSharedDataSets;
-        bool HasParameters;
+        public bool HasDataSources;
+        public bool HasSharedDataSets;
+        public bool HasParameters;
     }
 
     public class DataSet : CatalogItem
