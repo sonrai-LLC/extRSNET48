@@ -75,6 +75,14 @@ namespace Sonrai.ExtRS.Models
         public List<CatalogItem> Value;
     }
 
+    public class CatalogItemResponse
+    {
+        [JsonProperty("@odata.context")]
+        string ODataContext;
+        [JsonProperty("value")]
+        List<CatalogItem> Value;
+    }
+
     public class Report : CatalogItem
     {
         [JsonProperty("HasDataSources")]

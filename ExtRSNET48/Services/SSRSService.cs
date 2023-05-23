@@ -28,48 +28,52 @@ namespace Sonrai.ExtRSNET48
             serverUrl = string.Format("https://{0}/reports/api/v2.0/", conn.ServerUrl);
         }
 
-        public async Task<object> CallApi(string verb, string operation, string content = "", string parameters = "")
+        public async Task<HttpResponseMessage> CallApi(string verb, string operation, string content = "", string parameters = "")
         {
-            string response = "";
-            CatalogItems items = new CatalogItems();
-            CatalogItem item;
-            HttpContent httpContent = new StringContent(content);
-            HttpResponseHeaders headers;
-            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
+            try
             {
-                using (client = new HttpClient(handler))
+                HttpResponseMessage response = new HttpResponseMessage();
+                CatalogItems items = new CatalogItems();
+                CatalogItem item;
+                HttpContent httpContent = new StringContent(content, Encoding.UTF8, "application/json");
+                using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
                 {
-                    switch (verb)
+                    using (client = new HttpClient(handler))
                     {
-                        case "GET":
-                            response = await client.GetAsync(serverUrl + operation).Result.Content.ReadAsStringAsync();
-                            break;
-                        case "POST":
-                            return client.PostAsync(serverUrl + operation, httpContent).Result.StatusCode;
-                        case "DELETE":
-                            return client.DeleteAsync(serverUrl + operation).Result.StatusCode;
-                        case "PUT":
-                            return client.PutAsync(serverUrl + operation, httpContent).Result.StatusCode;
-                    }
-
-                    try
-                    {
-                        items = JsonConvert.DeserializeObject<CatalogItems>(response);
+                        switch (verb)
+                        {
+                            case "GET":
+                                response = client.GetAsync(serverUrl + operation).Result;
+                                var catItems = await response.Content.ReadAsStringAsync();
+                                items = JsonConvert.DeserializeObject<CatalogItems>(catItems);
+                                break;
+                            case "POST":
+                                return client.PostAsync(serverUrl + operation, httpContent).Result;
+                            case "DELETE":
+                                return client.DeleteAsync(serverUrl + operation).Result;
+                            case "PUT":
+                                return client.PutAsync(serverUrl + operation, httpContent).Result;
+                        }
 
                         if (items.Value != null)
                         {
-                            return items;
+                            return response;
                         }
                         else
                         {
-                            return JsonConvert.DeserializeObject<CatalogItem>(response);
+                            return JsonConvert.DeserializeObject<HttpResponseMessage>(response.Content.ToString());
                         }
                     }
-                    catch { }
 
                     return null;
                 }
             }
+            catch (Exception e)
+            {
+
+            }
+
+            return null;
         }
 
         public static string GetCredentialJson(string user, string password, string domain)
@@ -95,7 +99,6 @@ namespace Sonrai.ExtRSNET48
 
             return sqlAuthCookie.Value.Replace("sqlAuthCookie=", "");
         }
-
 
         public string GetCatalogItemHtml(string pathOrId, string onClick = "", string css = "")
         {

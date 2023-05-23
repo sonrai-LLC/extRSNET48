@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtRSNET48.Tests", "ExtRSNET48.Tests\ExtRSNET48.Tests.csproj", "{707203F5-9333-4E53-9C77-93C27FD597BD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4A40341F-DE2C-418C-BBF5-055A7B5BC87B} = {4A40341F-DE2C-418C-BBF5-055A7B5BC87B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtRSNET48", "ExtRSNET48\ExtRSNET48.csproj", "{4A40341F-DE2C-418C-BBF5-055A7B5BC87B}"
 EndProject

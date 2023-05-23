@@ -28,7 +28,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
         [TestMethod]
         public void GetLocationReturnsNothing()
         {
-            var result = gis.GetLocation("NeverNeverland");
+            var result = gis.GetLocation("IYTDFOUYFUILYG");
             Assert.IsTrue(result == null);
         }
 
