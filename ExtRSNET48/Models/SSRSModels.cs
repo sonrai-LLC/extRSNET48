@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Net.Http;
 
@@ -26,6 +28,7 @@ namespace Sonrai.ExtRS.Models
         }
     }
 
+    [JsonObject]
     public class CatalogItem
     {
         [JsonProperty("@odata.type")]
@@ -34,40 +37,59 @@ namespace Sonrai.ExtRS.Models
         string Id;
         [JsonProperty("Name")]
         string Name;
+        [JsonProperty("Description")]
         string Description;
+        [JsonProperty("Path")]
         string Path;
+        [JsonProperty("Type")]
         string Type;
+        [JsonProperty("Hidden")]
         bool Hidden;
+        [JsonProperty("Size")]
         int Size;
+        [JsonProperty("ModifiedBy")]
         string ModifiedBy;
+        [JsonProperty("ModifiedDate")]
         string ModifiedDate;
+        [JsonProperty("CreatedBy")]
         string CreatedBy;
+        [JsonProperty("CreatedDate")]
         string CreatedDate;
+        [JsonProperty("ParentFolderId")]
         string ParentFolderId;
+        [JsonProperty("IsFavorite")]
         bool IsFavorite;
+        [JsonProperty("ContentType")]
         string ContentType;
+        [JsonProperty("Content")]
         string Content;
+        [JsonProperty("Roles")]
         string[] Roles;
     }
 
-    public class CatalogItemResponse
+    public class CatalogItems
     {
         [JsonProperty("@odata.context")]
-        string ODataContext;
+        public string ODataContext;
         [JsonProperty("value")]
-        List<CatalogItem> Value;
+        public List<CatalogItem> Value;
     }
 
     public class Report : CatalogItem
     {
+        [JsonProperty("HasDataSources")]
         public bool HasDataSources;
+        [JsonProperty("HasSharedDataSets")]
         public bool HasSharedDataSets;
+        [JsonProperty("HasParameters")]
         public bool HasParameters;
     }
 
     public class DataSet : CatalogItem
     {
+        [JsonProperty("QueryExecutionTimeOut")]
         bool QueryExecutionTimeOut;
+        [JsonProperty("HasParameters")]
         bool HasParameters;
     }
 
@@ -78,22 +100,32 @@ namespace Sonrai.ExtRS.Models
 
     public class DataSource : CatalogItem
     {
+        [JsonProperty("IsEnabled")]
         bool IsEnabled;
+        [JsonProperty("ConnectionString")]
         string ConnectionString;
+        [JsonProperty("DataSourceType")]
         string DataSourceType;
+        [JsonProperty("IsOriginalConnectionStringExpressionBased")]
         bool IsOriginalConnectionStringExpressionBased;
+        [JsonProperty("IsConnectionStringOverridden")]
         bool IsConnectionStringOverridden;
+        [JsonProperty("CredentialRetrieval")]
         string CredentialRetrieval;
+        [JsonProperty("IsReference")]
         bool IsReference;
+        [JsonProperty("DataSourceSubType")]
         string DataSourceSubType;
+        [JsonProperty("CredentialsByUser")]
         string CredentialsByUser;
+        [JsonProperty("CredentialsInServer")]
         string CredentialsInServer;
     }
 
     public enum AuthenticationType
     {
-        WindowsAD,
-        MSCustomForms,
+        Windows,
+        Forms,
         ExtRSAuth
     }
 }

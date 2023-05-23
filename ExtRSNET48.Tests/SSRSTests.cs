@@ -10,27 +10,58 @@ namespace Sonrai.ExtRSNET48.UnitTests
     public class SSRSTests
     {
         SSRSService ssrs;
+        HttpClient httpClient;
+        string defaultCreds = "\"UserName\": \"ExtRSAuth\",  \"Password\": \"\",  \"Domain\": \"localhost\"";
 
         [TestInitialize]
         public async Task InitializeTests()
         {
             SSRSConnection connection = new SSRSConnection("localhost", "ExtRSAuth", AuthenticationType.ExtRSAuth);
-            HttpClient httpClient = new HttpClient();
+            httpClient = new HttpClient();
             connection.sqlAuthCookie = await SSRSService.GetSqlAuthCookie(httpClient);
             ssrs = new SSRSService(connection);
         }
 
         [TestMethod]
-        public async Task GetAllCatalogItemsHtmlSucceeds()
+        public async Task GetGetSqlAuthCookieSucceeds()
         {
-            var result = await ssrs.GetAllCatalogItemsHtml("");
+            var result = await SSRSService.GetSqlAuthCookie(httpClient, "ExtRSAuth", "", "localhost");
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void GetSSRSParameterUIMarkupSucceeds()
+         public async Task CreateSessionSucceeds()
         {
+            var result = await ssrs.CallApi("POST++", "Session", "{" + defaultCreds + "}");
+            Assert.IsNotNull(result);
+        }
 
+        [TestMethod]
+        public async Task DeleteSessionSucceeds()
+        {
+            var result = await ssrs.CallApi("GET", "Reports(path='/Reports/Team')");
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllCatalogItemsSucceeds()
+        {
+            var result = await ssrs.CallApi("GET", "CatalogItems");
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetAllReportsSucceeds()
+        {
+            var result = await ssrs.CallApi("GET", "Reports");
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task GetReportSucceeds()
+        {
+            var result = await ssrs.CallApi("GET", "Reports(path='/Reports/Team')");
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -40,27 +71,27 @@ namespace Sonrai.ExtRSNET48.UnitTests
         }
 
         [TestMethod]
-        public void IsOnlineSucceeds()
+        public async Task CreateCatalogItemSucceeds()
         {
 
         }
 
         [TestMethod]
-        public void DeleteCatalogItemSucceeds()
+        public async Task DeleteCatalogItemSucceeds()
         {
 
         }
 
-        [TestMethod]
-        public void CreateSessionSucceeds()
-        {
+        //[TestMethod]
+        //public async Task GetParameterMarkupSucceeds()
+        //{
 
-        }
+        //}
 
-        [TestMethod]
-        public void DeleteSessionSucceeds()
-        {
+        //[TestMethod]
+        //public async Task GetCatalogItemMarkupSucceeds()
+        //{
 
-        }
+        //}
     }
 }

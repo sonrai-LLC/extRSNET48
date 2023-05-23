@@ -1,59 +1,92 @@
 ﻿using Newtonsoft.Json;
 using Sonrai.ExtRS.Models;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Net;
+using System.Security.Cryptography;
+using System;
 
 namespace Sonrai.ExtRSNET48
 {
     public class SSRSService
     {
-        //IReportServerCredentials 
         public SSRSConnection conn;
         private HttpClient client;
+        CookieContainer cookieContainer = new CookieContainer();
+        string serverUrl;
+       
         public SSRSService(SSRSConnection connection)
         {          
             conn = connection;
             client = new HttpClient();
+            cookieContainer.Add(new Cookie("sqlAuthCookie", conn.sqlAuthCookie, "/", "localhost"));
+            serverUrl = string.Format("https://{0}/reports/api/v2.0/", conn.ServerUrl);
         }
 
-        public async Task<CatalogItemResponse> GetAllCatalogItemsHtml(string filter, string css = "")
+        public async Task<object> CallApi(string verb, string operation, string content = "", string parameters = "")
         {
-            CookieContainer cookieContainer = new CookieContainer();
-            cookieContainer.Add(new Cookie("sqlAuthCookie", conn.sqlAuthCookie, "/", "localhost"));
+            string response = "";
+            CatalogItems items = new CatalogItems();
+            CatalogItem item;
+            HttpContent httpContent = new StringContent(content);
+
             using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
             {
                 using (client = new HttpClient(handler))
                 {
-                    string resp = await client.GetAsync(string.Format("https://{0}/reports/api/v2.0/CatalogItems", conn.ServerUrl)).Result.Content.ReadAsStringAsync();
-                    CatalogItemResponse catalogItems = JsonConvert.DeserializeObject<CatalogItemResponse>(resp);
-                    StringBuilder sb = new StringBuilder();
+                    switch (verb)
+                    {
+                        case "GET":
+                            response = await client.GetAsync(serverUrl + operation).Result.Content.ReadAsStringAsync();
+                            break;
+                        case "POST":
+                            response = await client.PostAsync(serverUrl + operation, httpContent).Result.Content.ReadAsStringAsync();
+                            break;
+                        case "POST++":
+                            var headers = client.PostAsync(serverUrl + operation, httpContent).Result.Headers;
+                            return headers.First(x => x.Key == "Set-Cookie").Value;
+                        case "DELETE":
+                            response = await client.DeleteAsync(serverUrl + operation).Result.Content.ReadAsStringAsync();
+                            break;
+                        case "PUT":
+                            response = await client.PutAsync(serverUrl + operation, httpContent).Result.Content.ReadAsStringAsync();
+                            break;
+                    }
 
-                    //sb.Append("<div id='path'");
-                    //foreach (var item in catalogItems.)
-                    //{
-                    //    sb.Append(@" < div>
-                    //    !!!!!
-                    //    </div>");
-                    //}
-                    //sb.Append(@"</div>");
+                    try
+                    {
+                        items = JsonConvert.DeserializeObject<CatalogItems>(response);
 
-                    return catalogItems;
+                        if (items.Value != null)
+                        {
+                            return items;
+                        }
+                        else
+                        {
+                            return JsonConvert.DeserializeObject<CatalogItem>(response);
+                        }
+                    }
+                    catch { }
+
+                    return null;
                 }
             }
         }
 
-        public static async Task<string> GetSqlAuthCookie(HttpClient client, string user = "", string password = "", string domain = "localhost")
+        public static string GetCredentialJson(string user, string password, string domain)
+        {
+            return string.Format("\"UserName\":\"{0}\",\"Password\": \"{1}\",\"Domain\":\"{2}\"", user, password, domain);
+        }
+
+        public static async Task<string> GetSqlAuthCookie(HttpClient client, string user = "ExtRSAuth", string password = "", string domain = "localhost")
         {
             string cookie = "";
-            StringContent httpContent = new StringContent("{ \"UserName\": \"ExtRSAuth\",  \"Password\": \"\",  \"Domain\": \"{0}\" }", Encoding.UTF8, "application/json");
+            StringContent httpContent = new StringContent("{" + GetCredentialJson(user, password, domain) + "}", Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync(string.Format("https://{0}/reports/api/v2.0/Session", domain), httpContent);
             HttpHeaders headers = response.Headers;
@@ -72,6 +105,7 @@ namespace Sonrai.ExtRSNET48
 
         public string GetCatalogItemHtml(string pathOrId, string onClick = "", string css = "")
         {
+            StringBuilder sb = new StringBuilder();
             string resourceType = "";
             switch (resourceType)
             {
@@ -96,11 +130,6 @@ namespace Sonrai.ExtRSNET48
         }
 
         public string GetSSRSParameterHtml(string pathOrId)
-        {
-            return "</>";
-        }
-
-        public string CreateOrUpdateCatalogItem(List<CatalogItem> catalogItem)
         {
             return "</>";
         }
