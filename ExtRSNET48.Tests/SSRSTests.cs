@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sonrai.ExtRS.Models;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-// await httpClient.DeleteAsync(string.Format("https://{0}/reports/api/v2.0/Session", ServerUrl));
 namespace Sonrai.ExtRSNET48.UnitTests
 {
     [TestClass]
@@ -30,17 +30,17 @@ namespace Sonrai.ExtRSNET48.UnitTests
         }
 
         [TestMethod]
-         public async Task CreateSessionSucceeds()
+        public async Task CreateSessionSucceeds()
         {
-            var result = await ssrs.CallApi("POST++", "Session", "{" + defaultCreds + "}");
-            Assert.IsNotNull(result);
+            var result = await ssrs.CallApi("POST", "Session", "{" + defaultCreds + "}");
+            Assert.IsTrue(Convert.ToString(result) == "Created");
         }
 
         [TestMethod]
         public async Task DeleteSessionSucceeds()
         {
-            var result = await ssrs.CallApi("GET", "Reports(path='/Reports/Team')");
-            Assert.IsNotNull(result);
+            var result = await ssrs.CallApi("DELETE", "Session");
+            Assert.IsTrue(Convert.ToString(result) == "OK");
         }
 
         [TestMethod]

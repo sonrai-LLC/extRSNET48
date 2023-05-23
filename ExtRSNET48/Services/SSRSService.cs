@@ -34,7 +34,7 @@ namespace Sonrai.ExtRSNET48
             CatalogItems items = new CatalogItems();
             CatalogItem item;
             HttpContent httpContent = new StringContent(content);
-
+            HttpResponseHeaders headers;
             using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
             {
                 using (client = new HttpClient(handler))
@@ -45,17 +45,11 @@ namespace Sonrai.ExtRSNET48
                             response = await client.GetAsync(serverUrl + operation).Result.Content.ReadAsStringAsync();
                             break;
                         case "POST":
-                            response = await client.PostAsync(serverUrl + operation, httpContent).Result.Content.ReadAsStringAsync();
-                            break;
-                        case "POST++":
-                            var headers = client.PostAsync(serverUrl + operation, httpContent).Result.Headers;
-                            return headers.First(x => x.Key == "Set-Cookie").Value;
+                            return client.PostAsync(serverUrl + operation, httpContent).Result.StatusCode;
                         case "DELETE":
-                            response = await client.DeleteAsync(serverUrl + operation).Result.Content.ReadAsStringAsync();
-                            break;
+                            return client.DeleteAsync(serverUrl + operation).Result.StatusCode;
                         case "PUT":
-                            response = await client.PutAsync(serverUrl + operation, httpContent).Result.Content.ReadAsStringAsync();
-                            break;
+                            return client.PutAsync(serverUrl + operation, httpContent).Result.StatusCode;
                     }
 
                     try

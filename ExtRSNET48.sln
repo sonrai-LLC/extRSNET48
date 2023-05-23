@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtRSNET48.Tests", "ExtRSNE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtRSNET48", "ExtRSNET48\ExtRSNET48.csproj", "{4A40341F-DE2C-418C-BBF5-055A7B5BC87B}"
 EndProject
-Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ExtensionMethodExamples", "ExtRSNET48Examples\ExtensionMethodExamples.rptproj", "{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}"
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ExtensionMethodExamples", "ExtRSNET48Examples\ExtensionMethodExamples.rptproj", "{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,15 +28,15 @@ Global
 		{4A40341F-DE2C-418C-BBF5-055A7B5BC87B}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{4A40341F-DE2C-418C-BBF5-055A7B5BC87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A40341F-DE2C-418C-BBF5-055A7B5BC87B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.Debug|Any CPU.ActiveCfg = Debug
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.Debug|Any CPU.Build.0 = Debug
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.Debug|Any CPU.Deploy.0 = Debug
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.DebugLocal|Any CPU.Build.0 = DebugLocal
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.DebugLocal|Any CPU.Deploy.0 = DebugLocal
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.Release|Any CPU.ActiveCfg = Release
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.Release|Any CPU.Build.0 = Release
-		{B1634F0A-05B6-4CAF-9D22-B48A6DC22E1F}.Release|Any CPU.Deploy.0 = Release
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.Debug|Any CPU.ActiveCfg = Debug
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.Debug|Any CPU.Build.0 = Debug
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.Debug|Any CPU.Deploy.0 = Debug
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.DebugLocal|Any CPU.Build.0 = DebugLocal
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.DebugLocal|Any CPU.Deploy.0 = DebugLocal
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.Release|Any CPU.ActiveCfg = Release
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.Release|Any CPU.Build.0 = Release
+		{C96BE059-F03E-4EF0-BB5D-CFB3A93AE396}.Release|Any CPU.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
