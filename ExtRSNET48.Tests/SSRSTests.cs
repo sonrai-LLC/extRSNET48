@@ -87,8 +87,8 @@ namespace Sonrai.ExtRSNET48.UnitTests
         public async Task GetDataSourceSucceeds()
         {
             var response = await ssrs.CallApi("GET", "DataSources(path='/Data Sources/localhost')");
-            DataSource dataSourcew = JsonConvert.DeserializeObject<DataSource>(await response.Content.ReadAsStringAsync());
-            Assert.IsTrue(ssrs.GetCatalogItem(response).Result.Id == dataSourcew.Id);
+            DataSource dataSource = JsonConvert.DeserializeObject<DataSource>(await response.Content.ReadAsStringAsync());
+            Assert.IsTrue(ssrs.GetCatalogItem(response).Result.Id == dataSource.Id);
         }
 
         [TestMethod]
@@ -136,7 +136,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
         {
             string content = "\"Id\": \"3A42F3DD-3B48-461C-9625-2CF531C301D2\"," +
                               "\"ModifiedBy\": \"ExtRSAuth\", " +
-                              "\"Name\": \"EWTF_some_new_resource77\"," +
+                              "\"Name\": \"EWTF_some_new_resource7\"," +
                                "\"Description\": \"This is a desc\"," +
                                "\"Path\": \"/Reports\"," +
                                "\"Type\": \"Resource\"," +

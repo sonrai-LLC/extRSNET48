@@ -127,7 +127,19 @@ namespace Sonrai.ExtRS.Models
         [JsonProperty("CredentialsByUser")]
         public string CredentialsByUser;
         [JsonProperty("CredentialsInServer")]
-        public string CredentialsInServer;
+        public CredentialsInServer CredentialsInServer;
+    }
+
+    public class CredentialsInServer 
+    {
+        [JsonProperty("UserName")]
+        public string UserName;
+        [JsonProperty("Password")]
+        public string Password;
+        [JsonProperty("UseAsWindowsCredentials")]
+        public bool UseAsWindowsCredentials;
+        [JsonProperty("ImpersonateAuthenticatedUser")]
+        public bool ImpersonateAuthenticatedUser;
     }
 
     public enum AuthenticationType
