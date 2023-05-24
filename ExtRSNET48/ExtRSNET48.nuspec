@@ -2,16 +2,15 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$version$</version>
+    <version>1.7.1</version>
     <title>$title$</title>
-    <authors>$author$</authors>
+    <authors>sonrai LLC</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <!-- <icon>icon.png</icon> -->
-    <projectUrl>http://project_url_here_or_delete_this_line/</projectUrl>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <projectUrl>https://github.com/sonrai-LLC/ExtRSNET48</projectUrl>
+    <iconUrl>https://sonrai.io/images/ssrs.png</iconUrl>
+    <description>$ExtRS.NET48 is a .NET Framework 4.8 class library for extending the capabilities of Reporting Services.</description>
     <copyright>$copyright$</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags>SSRS, Reporting Services, .NET, .NET Framework, .NET 4.8, Custom Assembly, .NET Extension</tags>
   </metadata>
 </package>
