@@ -7,7 +7,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Net;
-using System;
 
 namespace Sonrai.ExtRSNET48
 {
@@ -28,36 +27,27 @@ namespace Sonrai.ExtRSNET48
 
         public async Task<HttpResponseMessage> CallApi(string verb, string operation, string content = "", string parameters = "")
         {
-            try
+            HttpResponseMessage response = new HttpResponseMessage();
+            HttpContent httpContent = new StringContent(content, Encoding.UTF8, "application/json");
+            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
             {
-                HttpResponseMessage response = new HttpResponseMessage();
-                HttpContent httpContent = new StringContent(content, Encoding.UTF8, "application/json");
-                using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
+                using (client = new HttpClient(handler))
                 {
-                    using (client = new HttpClient(handler))
+                    switch (verb)
                     {
-                        switch (verb)
-                        {
-                            case "GET":
-                                return await client.GetAsync(serverUrl + operation);
-                            case "POST":
-                                return await client.PostAsync(serverUrl + operation, httpContent);
-                            case "DELETE":
-                                return await client.DeleteAsync(serverUrl + operation);
-                            case "PUT":
-                                return await client.PutAsync(serverUrl + operation, httpContent);
-                        }
+                        case "GET":
+                            return await client.GetAsync(serverUrl + operation);
+                        case "POST":
+                            return await client.PostAsync(serverUrl + operation, httpContent);
+                        case "DELETE":
+                            return await client.DeleteAsync(serverUrl + operation);
+                        case "PUT":
+                            return await client.PutAsync(serverUrl + operation, httpContent);
                     }
-
-                    return null;
                 }
-            }
-            catch (Exception e)
-            {
 
+                return null;
             }
-
-            return null;
         }
 
         public static string GetCredentialJson(string user, string password, string domain)
