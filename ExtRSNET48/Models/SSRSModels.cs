@@ -31,6 +31,8 @@ namespace Sonrai.ExtRS.Models
     [JsonObject]
     public class CatalogItem
     {
+        [JsonProperty("@odata.context")]
+        string ODataContext;
         [JsonProperty("@odata.type")]
         string ODataType;
         [JsonProperty("Id")]
@@ -85,6 +87,8 @@ namespace Sonrai.ExtRS.Models
 
     public class Report : CatalogItem
     {
+        [JsonProperty("@odata.context")]
+        string ODataContext;
         [JsonProperty("HasDataSources")]
         public bool HasDataSources;
         [JsonProperty("HasSharedDataSets")]

@@ -44,24 +44,25 @@ namespace Sonrai.ExtRSNET48
                         {
                             case "GET":
                                 response = client.GetAsync(serverUrl + operation).Result;
-                                var catItems = await response.Content.ReadAsStringAsync();
-                                items = JsonConvert.DeserializeObject<CatalogItems>(catItems);
-                                break;
+                                return response;
+                                //var catItems = await response.Content.ReadAsStringAsync();
+                                //items = JsonConvert.DeserializeObject<CatalogItems>(catItems);
+                            //if (items.Value != null)
+                            //{
+
+                            //}
+                            //else
+                            //{
+                            //    CatalogItems catalogItems = new CatalogItems();
+                            //    catalogItems.Value.Add(JsonConvert.DeserializeObject<CatalogItem>(response.Content.ToString()));
+
+                            //}
                             case "POST":
                                 return client.PostAsync(serverUrl + operation, httpContent).Result;
                             case "DELETE":
                                 return client.DeleteAsync(serverUrl + operation).Result;
                             case "PUT":
                                 return client.PutAsync(serverUrl + operation, httpContent).Result;
-                        }
-
-                        if (items.Value != null)
-                        {
-                            return response;
-                        }
-                        else
-                        {
-                            return JsonConvert.DeserializeObject<HttpResponseMessage>(response.Content.ToString());
                         }
                     }
 
