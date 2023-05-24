@@ -22,7 +22,7 @@ namespace Sonrai.ExtRSNET48
             conn = connection;
             client = new HttpClient();
             cookieContainer.Add(new Cookie("sqlAuthCookie", conn.sqlAuthCookie, "/", "localhost"));
-            serverUrl = string.Format("https://{0}/reports/api/v2.0/", conn.ServerUrl);
+            serverUrl = string.Format("https://{0}/reports/api/v2.0/", conn.ServerName);
         }
 
         public async Task<HttpResponseMessage> CallApi(string verb, string operation, string content = "", string parameters = "")
@@ -103,16 +103,6 @@ namespace Sonrai.ExtRSNET48
         public string GetSSRSParameterHtml(string pathOrId)
         {
             return "</>";
-        }
-
-        public byte[] GetReportBytes(string pathOrId)
-        {
-            return new byte[0];
-        }
-
-        public string IsOnline()
-        {
-            return "";
         }
     }   
 }

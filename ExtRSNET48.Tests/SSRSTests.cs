@@ -11,14 +11,14 @@ namespace Sonrai.ExtRSNET48.UnitTests
     {
         SSRSService ssrs;
         HttpClient httpClient;
-        string defaultCreds = "\"UserName\": " + "\"ExtRSAuth\",  " + "\"Password\": \"\", " + " \"Domain\": \"localhost\"";
+        readonly string defaultCreds = "\"UserName\": " + "\"ExtRSAuth\",  " + "\"Password\": \"\", " + " \"Domain\": \"localhost\"";
 
         [TestInitialize]
         public async Task InitializeTests()
         {
             SSRSConnection connection = new SSRSConnection("localhost", "ExtRSAuth", AuthenticationType.ExtRSAuth);
             httpClient = new HttpClient();
-            connection.sqlAuthCookie = await SSRSService.GetSqlAuthCookie(httpClient);
+            connection.sqlAuthCookie = await SSRSService.GetSqlAuthCookie(httpClient, connection.Administrator, "", connection.ServerName);
             ssrs = new SSRSService(connection);
         }
 
@@ -116,6 +116,10 @@ namespace Sonrai.ExtRSNET48.UnitTests
 
             var result = await ssrs.CallApi("POST", "Resources", "{" + content + "}");
             Assert.IsTrue(result.IsSuccessStatusCode);
+
+            var getResponse = await ssrs.CallApi("GET", result.Headers.Location.Segments[4]);
+            Assert.IsTrue(getResponse.IsSuccessStatusCode);
+
             var delResult = await ssrs.CallApi("DELETE", result.Headers.Location.Segments[4]);
             Assert.IsTrue(result.IsSuccessStatusCode);
         }

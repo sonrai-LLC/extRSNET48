@@ -14,14 +14,14 @@ namespace Sonrai.ExtRS.Models
         public string Administrator = "ExtRSAuth";
         public string UserName;
         public string UserRole;
-        public string ServerUrl;
+        public string ServerName;
         public AuthenticationType AuthenticationType;
 
         protected bool IsOnline = false;
 
-        public SSRSConnection(string serverUrl, string adminUser, AuthenticationType authType = AuthenticationType.ExtRSAuth)
+        public SSRSConnection(string serverName, string adminUser, AuthenticationType authType = AuthenticationType.ExtRSAuth)
         {
-            ServerUrl = serverUrl;
+            ServerName = serverName;
             Administrator = adminUser ?? Administrator;
             AuthenticationType = authType;
             httpClient = new HttpClient();
