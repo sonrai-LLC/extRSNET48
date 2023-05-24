@@ -105,26 +105,6 @@ namespace Sonrai.ExtRSNET48
             return "</>";
         }
 
-        public async Task CreateSession()
-        {
-            await client.DeleteAsync(string.Format("https://{0}/reports/api/v2.0/Session", conn.ServerUrl));
-        }
-
-        public async Task DeleteSession()
-        {
-            await client.DeleteAsync(string.Format("https://{0}/reports/api/v2.0/Session", conn.ServerUrl));
-        }
-
-        public string DeleteCatalogItem(string pathOrId)
-        {
-            return "</>";
-        }
-
-        public string DeleteCatalogItems(List<CatalogItem> catalogItem)
-        {
-            return "</>";
-        }
-
         public byte[] GetReportBytes(string pathOrId)
         {
             return new byte[0];
