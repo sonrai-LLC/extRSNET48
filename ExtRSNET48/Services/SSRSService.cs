@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace Sonrai.ExtRSNET48
 {
@@ -50,6 +51,31 @@ namespace Sonrai.ExtRSNET48
             }
         }
 
+        public async Task<Report> GetReportFromApiCall(HttpResponseMessage response)
+        {
+            return JsonConvert.DeserializeObject<Report>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<CatalogItem> GetCatalogItemFromApiCall(HttpResponseMessage response)
+        {
+            return JsonConvert.DeserializeObject<CatalogItem>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<Folder> GetFolderItemFromApiCall(HttpResponseMessage response)
+        {
+            return JsonConvert.DeserializeObject<Folder>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<DataSource> GetDataSourceItemFromApiCall(HttpResponseMessage response)
+        {
+            return JsonConvert.DeserializeObject<DataSource>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<DataSet> GetDataSetItemFromApiCall(HttpResponseMessage response)
+        {
+            return JsonConvert.DeserializeObject<DataSet>(await response.Content.ReadAsStringAsync());
+        }
+
         public static string GetCredentialJson(string user, string password, string domain)
         {
             return string.Format("\"UserName\":\"{0}\",\"Password\": \"{1}\",\"Domain\":\"{2}\"", user, password, domain);
@@ -74,10 +100,12 @@ namespace Sonrai.ExtRSNET48
             return sqlAuthCookie.Value.Replace("sqlAuthCookie=", "");
         }
 
-        public string GetCatalogItemHtml(string pathOrId)
+        public async Task<string> GetCatalogItemHtml(string pathOrId)
         {
+            var response = await CallApi("GET", string.Format("Reports(path='{0}')", pathOrId));
             StringBuilder sb = new StringBuilder();
             string resourceType = "";
+
             switch (resourceType)
             {
                 case "folder":
@@ -97,11 +125,13 @@ namespace Sonrai.ExtRSNET48
                         return "</>";
                     }
             }
-            return "</>"; // format HTML in CLI lib lkup
+
+            return "</>";
         }
 
-        public string GetSSRSParameterHtml(string pathOrId)
+        public async Task<string> GetParameterHtml(string pathOrId)
         {
+
             return "</>";
         }
     }   

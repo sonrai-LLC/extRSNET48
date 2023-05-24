@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using Sonrai.ExtRS.Models;
 using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sonrai.ExtRSNET48.UnitTests
@@ -60,8 +62,42 @@ namespace Sonrai.ExtRSNET48.UnitTests
         [TestMethod]
         public async Task GetReportSucceeds()
         {
-            var result = await ssrs.CallApi("GET", "Reports(path='/Reports/Team')");
-            Assert.IsNotNull(result);
+            var response = await ssrs.CallApi("GET", "Reports(path='/Reports/Team')");
+            Report report= JsonConvert.DeserializeObject<Report>(await response.Content.ReadAsStringAsync()); 
+            Assert.IsTrue(report.Name.Length > 0); 
+            Assert.IsTrue(ssrs.GetReportFromApiCall(response).Result.Id != null);
+        }
+
+        [TestMethod]
+        public async Task GetCatalogItemSucceeds()
+        {
+            var response = await ssrs.CallApi("GET", "CatalogItems(path='/Reports/Folder/10k')");
+            CatalogItem catalogItem = JsonConvert.DeserializeObject<CatalogItem>(await response.Content.ReadAsStringAsync());
+            Assert.IsTrue(ssrs.GetCatalogItemFromApiCall(response).Result.Id == catalogItem.Id);
+        }
+
+        [TestMethod]
+        public async Task GetFolderSucceeds()
+        {
+            var response = await ssrs.CallApi("GET", "Folders(path='/Reports/Folder')");
+            Folder catalogItem = JsonConvert.DeserializeObject<Folder>(await response.Content.ReadAsStringAsync());
+            Assert.IsTrue(ssrs.GetCatalogItemFromApiCall(response).Result.Id == catalogItem.Id);
+        }
+
+        [TestMethod]
+        public async Task GetDataSourceSucceeds()
+        {
+            var response = await ssrs.CallApi("GET", "DataSources(path='/Data Sources/localhost')");
+            DataSource catalogItem = JsonConvert.DeserializeObject<DataSource>(await response.Content.ReadAsStringAsync());
+            Assert.IsTrue(ssrs.GetCatalogItemFromApiCall(response).Result.Id == catalogItem.Id);
+        }
+
+        [TestMethod]
+        public async Task GetDataSetSucceeds()
+        {
+            var response = await ssrs.CallApi("GET", "DataSets(path='/DataSets/PlayerData')");
+            DataSet catalogItem = JsonConvert.DeserializeObject<DataSet>(await response.Content.ReadAsStringAsync());
+            Assert.IsTrue(ssrs.GetCatalogItemFromApiCall(response).Result.Id == catalogItem.Id);
         }
 
         [TestMethod]
@@ -125,14 +161,16 @@ namespace Sonrai.ExtRSNET48.UnitTests
         }
 
         [TestMethod]
-        public async Task GetParameterMarkupSucceeds()
+        public async Task GetParameterHtmlSucceeds()
         {
+            var parameterResponse = await ssrs.GetParameterHtml("/Reports/Team");
 
         }
 
         [TestMethod]
-        public async Task GetCatalogItemMarkupSucceeds()
+        public async Task GetCatalogItemHtmlSucceeds()
         {
+            var catalogItemResponse = await ssrs.GetCatalogItemHtml("/Reports/Team");
 
         }
     }

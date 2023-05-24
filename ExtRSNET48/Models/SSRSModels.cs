@@ -31,42 +31,38 @@ namespace Sonrai.ExtRS.Models
     [JsonObject]
     public class CatalogItem
     {
-        [JsonProperty("@odata.context")]
-        string ODataContext;
-        [JsonProperty("@odata.type")]
-        string ODataType;
         [JsonProperty("Id")]
-        string Id;
+        public string Id;
         [JsonProperty("Name")]
-        string Name;
+        public string Name;
         [JsonProperty("Description")]
-        string Description;
+        public string Description;
         [JsonProperty("Path")]
-        string Path;
+        public string Path;
         [JsonProperty("Type")]
-        string Type;
+        public string Type;
         [JsonProperty("Hidden")]
-        bool Hidden;
+        public bool Hidden;
         [JsonProperty("Size")]
-        int Size;
+        public int Size;
         [JsonProperty("ModifiedBy")]
-        string ModifiedBy;
+        public string ModifiedBy;
         [JsonProperty("ModifiedDate")]
-        string ModifiedDate;
+        public string ModifiedDate;
         [JsonProperty("CreatedBy")]
-        string CreatedBy;
+        public string CreatedBy;
         [JsonProperty("CreatedDate")]
-        string CreatedDate;
+        public string CreatedDate;
         [JsonProperty("ParentFolderId")]
-        string ParentFolderId;
+        public string ParentFolderId;
         [JsonProperty("IsFavorite")]
-        bool IsFavorite;
+        public bool IsFavorite;
         [JsonProperty("ContentType")]
-        string ContentType;
+        public string ContentType;
         [JsonProperty("Content")]
-        string Content;
+        public string Content;
         [JsonProperty("Roles")]
-        string[] Roles;
+        public string[] Roles;
     }
 
     public class CatalogItems
@@ -80,15 +76,15 @@ namespace Sonrai.ExtRS.Models
     public class CatalogItemResponse
     {
         [JsonProperty("@odata.context")]
-        string ODataContext;
+        public string ODataContext;
         [JsonProperty("value")]
-        List<CatalogItem> Value;
+        public List<CatalogItem> Value;
     }
 
     public class Report : CatalogItem
     {
         [JsonProperty("@odata.context")]
-        string ODataContext;
+        public string ODataContext;
         [JsonProperty("HasDataSources")]
         public bool HasDataSources;
         [JsonProperty("HasSharedDataSets")]
@@ -100,9 +96,9 @@ namespace Sonrai.ExtRS.Models
     public class DataSet : CatalogItem
     {
         [JsonProperty("QueryExecutionTimeOut")]
-        bool QueryExecutionTimeOut;
+        public bool QueryExecutionTimeOut;
         [JsonProperty("HasParameters")]
-        bool HasParameters;
+        public bool HasParameters;
     }
 
     public class Folder : CatalogItem
@@ -113,25 +109,25 @@ namespace Sonrai.ExtRS.Models
     public class DataSource : CatalogItem
     {
         [JsonProperty("IsEnabled")]
-        bool IsEnabled;
+        public bool IsEnabled;
         [JsonProperty("ConnectionString")]
-        string ConnectionString;
+        public string ConnectionString;
         [JsonProperty("DataSourceType")]
-        string DataSourceType;
+        public string DataSourceType;
         [JsonProperty("IsOriginalConnectionStringExpressionBased")]
-        bool IsOriginalConnectionStringExpressionBased;
+        public bool IsOriginalConnectionStringExpressionBased;
         [JsonProperty("IsConnectionStringOverridden")]
-        bool IsConnectionStringOverridden;
+        public bool IsConnectionStringOverridden;
         [JsonProperty("CredentialRetrieval")]
-        string CredentialRetrieval;
+        public string CredentialRetrieval;
         [JsonProperty("IsReference")]
-        bool IsReference;
+        public bool IsReference;
         [JsonProperty("DataSourceSubType")]
-        string DataSourceSubType;
+        public string DataSourceSubType;
         [JsonProperty("CredentialsByUser")]
-        string CredentialsByUser;
+        public string CredentialsByUser;
         [JsonProperty("CredentialsInServer")]
-        string CredentialsInServer;
+        public string CredentialsInServer;
     }
 
     public enum AuthenticationType
