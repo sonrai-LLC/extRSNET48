@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Sonrai.ExtRS.Models;
+﻿using Sonrai.ExtRS.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -8,7 +7,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Net;
-using System.Security.Cryptography;
 using System;
 
 namespace Sonrai.ExtRSNET48
@@ -33,8 +31,6 @@ namespace Sonrai.ExtRSNET48
             try
             {
                 HttpResponseMessage response = new HttpResponseMessage();
-                CatalogItems items = new CatalogItems();
-                CatalogItem item;
                 HttpContent httpContent = new StringContent(content, Encoding.UTF8, "application/json");
                 using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
                 {
@@ -43,26 +39,13 @@ namespace Sonrai.ExtRSNET48
                         switch (verb)
                         {
                             case "GET":
-                                response = client.GetAsync(serverUrl + operation).Result;
-                                return response;
-                                //var catItems = await response.Content.ReadAsStringAsync();
-                                //items = JsonConvert.DeserializeObject<CatalogItems>(catItems);
-                            //if (items.Value != null)
-                            //{
-
-                            //}
-                            //else
-                            //{
-                            //    CatalogItems catalogItems = new CatalogItems();
-                            //    catalogItems.Value.Add(JsonConvert.DeserializeObject<CatalogItem>(response.Content.ToString()));
-
-                            //}
+                                return await client.GetAsync(serverUrl + operation);
                             case "POST":
-                                return client.PostAsync(serverUrl + operation, httpContent).Result;
+                                return await client.PostAsync(serverUrl + operation, httpContent);
                             case "DELETE":
-                                return client.DeleteAsync(serverUrl + operation).Result;
+                                return await client.DeleteAsync(serverUrl + operation);
                             case "PUT":
-                                return client.PutAsync(serverUrl + operation, httpContent).Result;
+                                return await client.PutAsync(serverUrl + operation, httpContent);
                         }
                     }
 
