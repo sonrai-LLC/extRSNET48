@@ -51,27 +51,27 @@ namespace Sonrai.ExtRSNET48
             }
         }
 
-        public async Task<Report> GetReportFromApiCall(HttpResponseMessage response)
+        public async Task<Report> GetReport(HttpResponseMessage response)
         {
             return JsonConvert.DeserializeObject<Report>(await response.Content.ReadAsStringAsync());
         }
 
-        public async Task<CatalogItem> GetCatalogItemFromApiCall(HttpResponseMessage response)
+        public async Task<CatalogItem> GetCatalogItem(HttpResponseMessage response)
         {
             return JsonConvert.DeserializeObject<CatalogItem>(await response.Content.ReadAsStringAsync());
         }
 
-        public async Task<Folder> GetFolderItemFromApiCall(HttpResponseMessage response)
+        public async Task<Folder> GetFolder(HttpResponseMessage response)
         {
             return JsonConvert.DeserializeObject<Folder>(await response.Content.ReadAsStringAsync());
         }
 
-        public async Task<DataSource> GetDataSourceItemFromApiCall(HttpResponseMessage response)
+        public async Task<DataSource> GetDataSource(HttpResponseMessage response)
         {
             return JsonConvert.DeserializeObject<DataSource>(await response.Content.ReadAsStringAsync());
         }
 
-        public async Task<DataSet> GetDataSetItemFromApiCall(HttpResponseMessage response)
+        public async Task<DataSet> GetDataSet(HttpResponseMessage response)
         {
             return JsonConvert.DeserializeObject<DataSet>(await response.Content.ReadAsStringAsync());
         }
@@ -102,36 +102,41 @@ namespace Sonrai.ExtRSNET48
 
         public async Task<string> GetCatalogItemHtml(string pathOrId)
         {
-            var response = await CallApi("GET", string.Format("Reports(path='{0}')", pathOrId));
+            var response = await CallApi("GET", string.Format("CatalogItems(path='{0}')", pathOrId));
+            CatalogItem catalogItem = await GetCatalogItem(response);
             StringBuilder sb = new StringBuilder();
-            string resourceType = "";
 
-            switch (resourceType)
+            switch (catalogItem.Type)
             {
-                case "folder":
+                case "Folder":
                     {
-                        return "</>";
+                        sb.Append("<a id=\"").Append(catalogItem.Id).Append("\" href=\"").Append(catalogItem.Path).Append("\"><div style=\"color: lime; background-color:#000000; font-size:11pt; font-weight:bold;\">").Append(catalogItem.Name).Append("</div></a>");
+                        break;
                     }
-                case "report":
+                case "Report":
                     {
-                        return "</>";
+                        sb.Append("<a id=\"").Append(catalogItem.Id).Append("\" href=\"").Append(catalogItem.Path).Append("\"><div style=\"color: gold; background-color:#000000; font-size:11pt; font-weight:bold;\">").Append(catalogItem.Name).Append("</div></a>");
+                        break;
                     }
-                case "datasource":
+                case "DataSource":
                     {
-                        return "</>";
+                        sb.Append("<a id=\"").Append(catalogItem.Id).Append("\" href=\"").Append(catalogItem.Path).Append("\"><div style=\"color: cyan; background-color:#000000; font-size:11pt; font-weight:bold;\">").Append(catalogItem.Name).Append("</div></a>");
+                        break;
                     }
-                case "dataset":
+                case "Dataset":
                     {
-                        return "</>";
+                        sb.Append("<a id=\"").Append(catalogItem.Id).Append("\" href=\"").Append(catalogItem.Path).Append("\"><div style=\"color: pink; background-color:#000000; font-size:11pt; font-weight:bold;\">").Append(catalogItem.Name).Append("</div></a>");
+                        break;
                     }
             }
 
-            return "</>";
+            return sb.ToString();
         }
 
         public async Task<string> GetParameterHtml(string pathOrId)
         {
-
+            // TODO: will improve above method and implement this method
+            // in NET48 final version- v2, once ExtRS is converted to .NET 7+
             return "</>";
         }
     }   

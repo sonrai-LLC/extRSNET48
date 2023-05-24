@@ -2,16 +2,16 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.3</version>
-    <title>ExtRSNET48</title>
-    <authors>sonrai LLC</authors>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <projectUrl>https://github.com/cfitzg/ExtRSNET48</projectUrl>
-    <iconUrl>https://www.iconfinder.com/icons/170257/chart_charts_graph_graphs_list_report_reports_icon</iconUrl>
-    <description>A utility library for .NET Framework 4.8</description>
-    <releaseNotes>Initial utility methods</releaseNotes>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>http://project_url_here_or_delete_this_line/</projectUrl>
+    <description>$description$</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>$copyright$</copyright>
-    <tags>SSRS .NET formatting reports reporting</tags>
+    <tags>Tag1 Tag2</tags>
   </metadata>
 </package>
