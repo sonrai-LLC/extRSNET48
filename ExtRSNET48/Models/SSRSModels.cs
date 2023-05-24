@@ -9,10 +9,10 @@ namespace Sonrai.ExtRS.Models
 {
     public class SSRSConnection
     {
-        public HttpClient httpClient { get; set; }
-        public string sqlAuthCookie;
+        public HttpClient HttpClient { get; set; }
+        public string SqlAuthCookie;
         public string Administrator = "ExtRSAuth";
-        public string UserName;
+        public string serName;
         public string UserRole;
         public string ServerName;
         public AuthenticationType AuthenticationType;
@@ -24,7 +24,7 @@ namespace Sonrai.ExtRS.Models
             ServerName = serverName;
             Administrator = adminUser ?? Administrator;
             AuthenticationType = authType;
-            httpClient = new HttpClient();
+            HttpClient = new HttpClient();
         }
     }
 

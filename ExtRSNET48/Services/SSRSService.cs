@@ -21,7 +21,7 @@ namespace Sonrai.ExtRSNET48
         {          
             conn = connection;
             client = new HttpClient();
-            cookieContainer.Add(new Cookie("sqlAuthCookie", conn.sqlAuthCookie, "/", "localhost"));
+            cookieContainer.Add(new Cookie("sqlAuthCookie", conn.SqlAuthCookie, "/", "localhost"));
             serverUrl = string.Format("https://{0}/reports/api/v2.0/", conn.ServerName);
         }
 
@@ -74,7 +74,7 @@ namespace Sonrai.ExtRSNET48
             return sqlAuthCookie.Value.Replace("sqlAuthCookie=", "");
         }
 
-        public string GetCatalogItemHtml(string pathOrId, string onClick = "", string css = "")
+        public string GetCatalogItemHtml(string pathOrId)
         {
             StringBuilder sb = new StringBuilder();
             string resourceType = "";

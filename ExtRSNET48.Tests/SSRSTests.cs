@@ -18,7 +18,7 @@ namespace Sonrai.ExtRSNET48.UnitTests
         {
             SSRSConnection connection = new SSRSConnection("localhost", "ExtRSAuth", AuthenticationType.ExtRSAuth);
             httpClient = new HttpClient();
-            connection.sqlAuthCookie = await SSRSService.GetSqlAuthCookie(httpClient, connection.Administrator, "", connection.ServerName);
+            connection.SqlAuthCookie = await SSRSService.GetSqlAuthCookie(httpClient, connection.Administrator, "", connection.ServerName);
             ssrs = new SSRSService(connection);
         }
 
