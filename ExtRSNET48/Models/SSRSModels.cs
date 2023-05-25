@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Net;
 using System.Collections.Generic;
 using System.Net.Http;
 
-
-namespace Sonrai.ExtRS.Models
+namespace Sonrai.ExtRSNET48.Models
 {
     public class SSRSConnection
     {
