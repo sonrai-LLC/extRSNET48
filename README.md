@@ -1,7 +1,7 @@
 # ExtRS.NET48
 ExtRS.NET48 is a .NET Framework 4.8 class library for extending the capabilities of Reporting Services. With ExtRS.NET48, (pronounced "extras dot net 48"), common public API endpoints and SDK clients are consolidated into a utility .dll containing features that can compliment your reporting. ExtRS.NET48 also contains a simplified interface to the SSRS v2 API for programmatically managing SSRS catalog item types (CatalogItem, Report, DataSource, DataSet, etc.).
 
-SSRS ain't dead- it's just a niche tool that hasn't fully realized its potential- yet.🤷🏽‍♂️
+SSRS ain't dead- it's just a niche tool that hasn't fully realized its potential- yet. 🤷‍♂️
 
 # Requirements
 This plug-in works as a drop-in Nuget package for .NET Framework 4.8 projects as well an SSRS Custom Assembly as described by Microsoft here: https://docs.microsoft.com/en-us/sql/reporting-services/custom-assemblies/using-custom-assemblies-with-reports?view=sql-server-ver15
