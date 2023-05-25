@@ -24,12 +24,39 @@ This package includes the following components:
             ssrs = new SSRSService(connection);
         }
 
+
         public SSRSService(SSRSConnection connection)
         {          
             conn = connection;
             client = new HttpClient();
             cookieContainer.Add(new Cookie("sqlAuthCookie", conn.SqlAuthCookie, "/", "localhost"));
             serverUrl = string.Format("https://{0}/reports/api/v2.0/", conn.ServerName);
+        }
+
+
+        public async Task<HttpResponseMessage> CallApi(string verb, string operation, string content = "", string parameters = "")
+        {
+            HttpResponseMessage response = new HttpResponseMessage();
+            HttpContent httpContent = new StringContent(content, Encoding.UTF8, "application/json");
+            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
+            {
+                using (client = new HttpClient(handler))
+                {
+                    switch (verb)
+                    {
+                        case "GET":
+                            return await client.GetAsync(serverUrl + operation);
+                        case "POST":
+                            return await client.PostAsync(serverUrl + operation, httpContent);
+                        case "DELETE":
+                            return await client.DeleteAsync(serverUrl + operation);
+                        case "PUT":
+                            return await client.PutAsync(serverUrl + operation, httpContent);
+                    }
+                }
+
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
         }
 ```
 
