@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using Sonrai.ExtRS.Models;
+using Sonrai.ExtRSNET48.Models;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
